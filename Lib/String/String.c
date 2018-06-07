@@ -3,8 +3,6 @@
 String concatWord(String first, String last){
 	String new_str;
 	
-	first = concatLetter(first, ' ');
-	
 	if((new_str = malloc(strlen(first) + strlen(last) + 1)) != NULL){
 		new_str[0] = '\0';
 		strcat(new_str, first);
@@ -13,6 +11,7 @@ String concatWord(String first, String last){
 	
 	return new_str;
 }
+
 String concatLetter(String base, char add){
 	String str = base;
 	

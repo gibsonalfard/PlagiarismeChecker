@@ -1,16 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "lib/String/String.h"
-#include "lib/AVL/Tree.h"
+#include "lib/Function/Function.h"
 
 int main(int argc, char *argv[]) 
-{
-	address pohon = NULL;
-	
-	AVLTree(&pohon, "Ilham");
-	PrintInorder(pohon);
-	
+{	
+	char location[50] = "test.txt";
+	String text = caseFolding(text, location);
+
 	system("pause");	
 	return 0;
 }
