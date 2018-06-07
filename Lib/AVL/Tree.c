@@ -5,10 +5,10 @@
 
 #include "Tree.h"
 
-void AVLTree (address *root, char teks[])
-{printf("avl,in\n");
+void AVLTree (addr *root, char teks[])
+{
 	infotype info;
-	address node = NULL;
+	addr node = NULL;
 	
 	strcpy( info.kata, teks);
 	info.amount = 1;
@@ -17,30 +17,26 @@ void AVLTree (address *root, char teks[])
 	
 	int pat1 = 0, pat2 = 0;
 	while ( node->parent )
-	{printf("avl, whilein\n");
+	{
 		pat1 = pat2;
-		printf("avl, before compare\n");
+		
 		if ( node == node->parent->right ) {
-			pat2 = 1;printf("right\n");
+			pat2 = 1;
 		} else {
-			pat2 = 0;printf("left\n");
-		}printf("avl, after compare\n");
+			pat2 = 0;
+		}
 		
 		node = node->parent;
 		if ( !BalanceNode(node) ){
-			printf("avl, beofre balancing pat1 %d pat2 %d\n",pat1,pat2);Balancing( node, pat1, pat2);//printf("node %s %d\n",node->parent->info.kata, node->parent->height);
+			Balancing( node, pat1, pat2);//printf("node %s %d\n",node->parent->info.kata, node->parent->height);
 			node = node->parent;
-//			if ( node->parent ) {
-//				DecreaseHeight(node->parent);
-//			}
-//			printf("\nInorder : \n");PrintInorder(node);
-			Rooter(&(*root));printf("avl, after balancing\n");
-		}printf("avl, whileout\n");
+//			
+			Rooter(&(*root));
+		}
 	}
-	printf("avl,out\n");
 }
 
-void Rooter (address *root)
+void Rooter (addr *root)
 {
 	while ( (*root)->parent )
 	{
@@ -48,7 +44,7 @@ void Rooter (address *root)
 	}
 }
 
-bool BalanceNode (address node)
+bool BalanceNode (addr node)
 {
 	int l = 0, r = 0;
 	
@@ -63,9 +59,9 @@ bool BalanceNode (address node)
 	}
 }
 
-void Balancing (address node, int pat1, int pat2)
+void Balancing (addr node, int pat1, int pat2)
 {printf("balancing, in\n");
-	address temp1, temp2, temp3;
+	addr temp1, temp2, temp3;
 	
 	if ( pat2 == 1 ) {			
 		temp2 = node->right;
@@ -89,26 +85,26 @@ void Balancing (address node, int pat1, int pat2)
 	temp1 = node;
 	
 	if ( pat1 == pat2 ) {
-		if ( pat2 == 1 ) {printf("left left\n");
+		if ( pat2 == 1 ) {
 			RotateLeft(temp1, temp2);
 		}
-		else {printf("right right\n");
+		else {
 			RotateRight(temp1, temp2);
 		}
 	} 
 	else {
-		if ( pat2 == 1 ) {printf("right left\n");
+		if ( pat2 == 1 ) {
 			RotateRight(temp2, temp3);
 			RotateLeft(temp1, temp3);
 		}
-		else {printf("left right\n");
+		else {
 			RotateLeft(temp2, temp3);
 			RotateRight(temp1, temp3);
 		}
-	}printf("balancing, out\n");		
+	}		
 }
 
-void DecreaseHeight (address node)
+void DecreaseHeight (addr node)
 {
 	if ( node ) {
 		node->height -= 1;
@@ -116,7 +112,7 @@ void DecreaseHeight (address node)
 	} 
 }
 
-int Higher (address left, address right)
+int Higher (addr left, addr right)
 {
 	if (left && right) {
 		if (left->height >= right->height) {
@@ -133,7 +129,7 @@ int Higher (address left, address right)
 	}
 }
 
-void IncreaseHeight (address node)
+void IncreaseHeight (addr node)
 {
 	if ( node ) {
 		node->height += 1;
@@ -141,7 +137,7 @@ void IncreaseHeight (address node)
 	}
 }
 
-void InsertTree (address *root, infotype info, address *newnode)
+void InsertTree (addr *root, infotype info, addr *newnode)
 {
 	if ( !(*root) ) {
 		(*root) = NewNode(info);
@@ -175,7 +171,7 @@ void InsertTree (address *root, infotype info, address *newnode)
 	}
 }
 
-void NewHeight (address node)
+void NewHeight (addr node)
 {
 	if ( node->left && node->right ) {
 		node->height = (node->left->height >= node->right->height) ? node->left->height+1 : node->right->height+1;
@@ -191,9 +187,9 @@ void NewHeight (address node)
 	}
 }
 
-address NewNode (infotype info)
+addr NewNode (infotype info)
 {
-	address node = (address)malloc(sizeof(Node));
+	addr node = (addr)malloc(sizeof(Node));
 	node->parent = NULL;
 	node->left = NULL;
 	node->right = NULL;
@@ -203,16 +199,16 @@ address NewNode (infotype info)
 	return node;
 }
 
-void PrintInorder (address root)
+void PrintInorder (addr root)
 {
 	if (root) {
 		PrintInorder(root->left);
-		printf("%s %d %d",root->info.kata, root->info.amount, root->height);
+		printf("%s",root->info.kata);
 		PrintInorder(root->right);
 	}
 }
 
-void PrintPreorder (address root)
+void PrintPreorder (addr root)
 {
 	if (root) {
 		printf("%s %d %d",root->info.kata, root->info.amount, root->height);
@@ -221,7 +217,7 @@ void PrintPreorder (address root)
 	}
 }
 
-void RefreshHeight (address node)
+void RefreshHeight (addr node)
 {
 	if (node) {
 		printf("\nrefresh, %s from %d to ",node->info.kata,node->height);
@@ -233,9 +229,9 @@ void RefreshHeight (address node)
 	}
 }
 
-void RotateLeft (address node1, address node2)
+void RotateLeft (addr node1, addr node2)
 {
-	address node = node1->right;
+	addr node = node1->right;
 	node1->right = node2->left;
 	node2->left = node2->parent;
 	node2->parent = node1->parent;
@@ -251,9 +247,9 @@ void RotateLeft (address node1, address node2)
 	RefreshHeight(node2->left);
 }
 
-void RotateRight (address node1, address node2)
+void RotateRight (addr node1, addr node2)
 {
-	address node = node1->left;
+	addr node = node1->left;
 	node1->left = node2->right;
 	node2->right = node2->parent;
 	node2->parent = node1->parent;

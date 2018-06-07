@@ -7,50 +7,50 @@ typedef struct info{
 	int amount;	
 } infotype;
 
-typedef struct node* address;
+typedef struct node* addr;
 
 typedef struct node {
-	address parent;
-	address left;
-	address right;
+	addr parent;
+	addr left;
+	addr right;
 	int height;
 	infotype info;
 } Node;
 
 //penambahan teks ke tree dan langsung dibuat avl
-void AVLTree (address *root, char teks[]);
+void AVLTree (addr *root, char teks[]);
 
 //seimbang gak left right node
-bool BalanceNode (address node);
+bool BalanceNode (addr node);
 
 //proses penyeimbangan atau AVL
-void Balancing (address node, int pat1, int pat2);
+void Balancing (addr node, int pat1, int pat2);
 
-void DecreaseHeight (address node);
+void DecreaseHeight (addr node);
 
-int Higher (address left, address right);
+int Higher (addr left, addr right);
 
 //menambah height parent dari node  baru
-void IncreaseHeight (address node);
+void IncreaseHeight (addr node);
 
 //penambahan node ke tree ssecara bst atau sorted
-void InsertTree (address *root, infotype info, address *newnode);
+void InsertTree (addr *root, infotype info, addr *newnode);
 
-void NewHeight (address node);
+void NewHeight (addr node);
 
 //bikin node baru
-address NewNode (infotype info);
+addr NewNode (infotype info);
 
-void PrintInorder (address root);
+void PrintInorder (addr root);
 
-void PrintPreorder (address root);
+void PrintPreorder (addr root);
 
-void Rooter (address *root);
+void Rooter (addr *root);
 
-void RefreshHeight (address node);
+void RefreshHeight (addr node);
 
 //node diputar berlawanan arah jarum jam
-void RotateLeft (address node1, address node2);
+void RotateLeft (addr node1, addr node2);
 
 //node diputar searah jarum jam
-void RotateRight (address node1, address node2);
+void RotateRight (addr node1, addr node2);
