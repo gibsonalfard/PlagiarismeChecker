@@ -2,7 +2,7 @@
 FileName=TugasBesar.dev
 Name=TugasBesar
 Type=1
-Ver=1
+Ver=2
 ObjFiles=
 Includes=
 Libs=
@@ -21,7 +21,7 @@ LogOutputEnabled=0
 OverrideOutput=0
 OverrideOutputName=
 HostApplication=
-Folders=Lib,Lib/AVL,Lib/Statistik,Lib/String
+Folders=Lib,Lib/AVL,Lib/Function,Lib/Statistik,Lib/String
 CommandLine=
 UseCustomMakefile=0
 CustomMakefile=
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=000000000000000000000000000
-UnitCount=7
+UnitCount=8
 
 [VersionInfo]
 Major=1
@@ -110,10 +110,30 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit7]
-FileName=Lib\Statistik\Statistik.c
+[Unit8]
+FileName=Lib\Function\Function.c
 CompileCpp=0
-Folder=Lib/Statistik
+Folder=Lib/Function
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit9]
+FileName=Lib\Function\Function.c
+CompileCpp=0
+Folder=Lib/Function
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit7]
+FileName=Lib\Function\Function.h
+CompileCpp=0
+Folder=Lib/Function
 Compile=1
 Link=1
 Priority=1000

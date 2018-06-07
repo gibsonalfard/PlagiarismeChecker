@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -7,6 +8,12 @@
 
 void AVLTree (address *root, char teks[])
 {
+=======
+#include 
+
+void AVLTree (address *root, char teks[])
+{printf("avl,in\n");
+>>>>>>> master
 	infotype info;
 	address node = NULL;
 	
@@ -17,6 +24,7 @@ void AVLTree (address *root, char teks[])
 	
 	int pat1 = 0, pat2 = 0;
 	while ( node->parent )
+<<<<<<< HEAD
 	{
 		pat1 = pat2;
 		
@@ -29,14 +37,35 @@ void AVLTree (address *root, char teks[])
 		node = node->parent;
 		if ( !BalanceNode(node) ){
 			Balancing( node, pat1, pat2);//printf("node %s %d\n",node->parent->info.kata, node->parent->height);
+=======
+	{printf("avl, whilein\n");
+		pat1 = pat2;
+		printf("avl, before compare\n");
+		if ( node == node->parent->right ) {
+			pat2 = 1;printf("right\n");
+		} else {
+			pat2 = 0;printf("left\n");
+		}printf("avl, after compare\n");
+		
+		node = node->parent;
+		if ( !BalanceNode(node) ){
+			printf("avl, beofre balancing pat1 %d pat2 %d\n",pat1,pat2);Balancing( node, pat1, pat2);//printf("node %s %d\n",node->parent->info.kata, node->parent->height);
+>>>>>>> master
 			node = node->parent;
 //			if ( node->parent ) {
 //				DecreaseHeight(node->parent);
 //			}
 //			printf("\nInorder : \n");PrintInorder(node);
+<<<<<<< HEAD
 			Rooter(&(*root));
 		}
 	}
+=======
+			Rooter(&(*root));printf("avl, after balancing\n");
+		}printf("avl, whileout\n");
+	}
+	printf("avl,out\n");
+>>>>>>> master
 }
 
 void Rooter (address *root)
@@ -63,7 +92,11 @@ bool BalanceNode (address node)
 }
 
 void Balancing (address node, int pat1, int pat2)
+<<<<<<< HEAD
 {
+=======
+{printf("balancing, in\n");
+>>>>>>> master
 	address temp1, temp2, temp3;
 	
 	if ( pat2 == 1 ) {			
