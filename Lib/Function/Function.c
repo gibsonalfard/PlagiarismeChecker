@@ -2,6 +2,7 @@
 
 String caseFolding(String text, char *location){	
 	FILE *F;
+	location = concatWord("lib/File/",location);
 	F = fopen(location, "r");
 	int c, i;
 	char letter;
@@ -27,4 +28,24 @@ String caseFolding(String text, char *location){
 	
 	fclose(F);
 	return text;
+}
+
+void getStopwords(addr *T){
+	FILE *F;
+	F = fopen("lib/File/stopword.txt", "r");
+	
+	int c;
+	String word = "";
+	
+	while((c = fgetc(F)) != EOF){
+		if(c == 10){
+			AVLTree(&(*T), word);
+			//printf("%s\n", word);
+			word="";
+		}else{
+			word = concatLetter(word,(char)c);
+		}
+	}
+	
+	fclose(F);
 }
