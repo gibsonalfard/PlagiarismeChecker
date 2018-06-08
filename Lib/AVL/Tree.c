@@ -5,10 +5,10 @@ void AVLTree (addr *root, char teks[])
 	infotype info;
 	addr node = NULL;
 	
-	strcpy( info.kata, teks);
-	info.amount = 1;
+	strcpy(info, teks);
+	//info.amount = 1;
 	
-	InsertTree( &(*root), info, &node); if (node->parent) printf("node : %s parent : %s\n",node->info.kata,node->parent->info.kata);
+	InsertTree( &(*root), info, &node); //if (node->parent) printf("node : %s parent : %s\n",node->info.kata,node->parent->info.kata);
 	
 	int pat1 = 0, pat2 = 0;
 	while ( node->parent )
@@ -55,7 +55,7 @@ bool BalanceNode (addr node)
 }
 
 void Balancing (addr node, int pat1, int pat2)
-{printf("balancing, in\n");
+{
 	addr temp1, temp2, temp3;
 	
 	if ( pat2 == 1 ) {			
@@ -139,11 +139,11 @@ void InsertTree (addr *root, infotype info, addr *newnode)
 		(*newnode) = (*root);
 	}
 	else {
-		if ( strcmp((*root)->info.kata, info.kata) == 0 ) {
-			(*root)->info.amount++;
+		if ( strcmp((*root)->info, info) == 0 ) {
+			//(*root)->info.amount++;
 			(*newnode) = (*root);
 		}
-		else if ( strcmp((*root)->info.kata, info.kata) == -1 ) {
+		else if ( strcmp((*root)->info, info) == -1 ) {
 			if ( (*root)->right ) {
 				InsertTree (&(*root)->right, info, &(*newnode));
 			} else {
@@ -189,7 +189,8 @@ addr NewNode (infotype info)
 	node->left = NULL;
 	node->right = NULL;
 	node->height = 0;
-	node->info = info;
+	strcpy(node->info, info);
+	//node->info = info;
 	
 	return node;
 }
@@ -198,7 +199,7 @@ void PrintInorder (addr root)
 {
 	if (root) {
 		PrintInorder(root->left);
-		printf("%s",root->info.kata);
+		printf("%s ",root->info);
 		PrintInorder(root->right);
 	}
 }
@@ -206,7 +207,7 @@ void PrintInorder (addr root)
 void PrintPreorder (addr root)
 {
 	if (root) {
-		printf("%s %d %d",root->info.kata, root->info.amount, root->height);
+		printf("%s ",root->info);
 		PrintPreorder(root->left);
 		PrintPreorder(root->right);
 	}
@@ -215,9 +216,9 @@ void PrintPreorder (addr root)
 void RefreshHeight (addr node)
 {
 	if (node) {
-		printf("\nrefresh, %s from %d to ",node->info.kata,node->height);
+		//printf("\nrefresh, %s from %d to ",node->info,node->height);
 		NewHeight(node);
-		printf("%d\n",node->height);
+		//printf("%d\n",node->height);
 		if (node->parent) {
 			RefreshHeight(node->parent);
 		}

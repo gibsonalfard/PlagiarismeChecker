@@ -2,7 +2,7 @@
 FileName=TugasBesar.dev
 Name=TugasBesar
 Type=1
-Ver=2
+Ver=1
 ObjFiles=
 Includes=
 Libs=
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=000000000000000000000000000
-UnitCount=8
+UnitCount=9
 
 [VersionInfo]
 Major=1
@@ -51,9 +51,9 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit6]
-FileName=Lib\String\String.c
+FileName=Lib\Function\Function.c
 CompileCpp=0
-Folder=Lib/String
+Folder=Lib/Function
 Compile=1
 Link=1
 Priority=1000
@@ -70,37 +70,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit2]
-FileName=Lib\AVL\Tree.c
-CompileCpp=0
-Folder=Lib/AVL
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit3]
-FileName=Lib\AVL\Tree.h
-CompileCpp=0
-Folder=Lib/AVL
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit4]
-FileName=Lib\Statistik\Statistik.h
-CompileCpp=0
-Folder=Lib/Statistik
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit5]
 FileName=Lib\String\String.h
 CompileCpp=0
 Folder=Lib/String
@@ -110,8 +80,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit8]
-FileName=Lib\Function\Function.c
+[Unit4]
+FileName=Lib\String\String.c
+CompileCpp=0
+Folder=Lib/String
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit5]
+FileName=Lib\Function\Function.h
 CompileCpp=0
 Folder=Lib/Function
 Compile=1
@@ -120,10 +100,10 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit9]
-FileName=Lib\Function\Function.c
+[Unit8]
+FileName=Lib\AVL\Tree.c
 CompileCpp=0
-Folder=Lib/Function
+Folder=Lib/AVL
 Compile=1
 Link=1
 Priority=1000
@@ -131,9 +111,29 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=Lib\Function\Function.h
+FileName=Lib\Statistik\Statistik.c
 CompileCpp=0
-Folder=Lib/Function
+Folder=Lib/Statistik
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit9]
+FileName=Lib\AVL\Tree.h
+CompileCpp=0
+Folder=Lib/AVL
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit2]
+FileName=Lib\Statistik\Statistik.h
+CompileCpp=0
+Folder=Lib/Statistik
 Compile=1
 Link=1
 Priority=1000

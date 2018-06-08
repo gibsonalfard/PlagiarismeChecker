@@ -3,10 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-typedef struct info{
-	char kata[40];
-	int amount;	
-} infotype;
+typedef char infotype[40];
 
 typedef struct node* addr;
 

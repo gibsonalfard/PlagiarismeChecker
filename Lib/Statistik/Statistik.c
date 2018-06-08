@@ -1,87 +1,43 @@
-<<<<<<< HEAD
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-
 #include "Statistik.h"
 
-void AVLTree (address *root, char teks[])
-{
-=======
-#include 
-
-void AVLTree (address *root, char teks[])
-{printf("avl,in\n");
->>>>>>> master
-	infotype info;
-	address node = NULL;
+//penambahan teks ke tree dan langsung dibuat avl
+void AddStat (addrStat *root, char teks[], int numTeks){
+	StatData info;
+	addrStat nodes = NULL;
 	
-	strcpy( info.kata, teks);
-	info.amount = 1;
+	strcpy(info.kata, teks);
+	newNumberOfAmount(&info, numTeks);
 	
-	InsertTree( &(*root), info, &node); if (node->parent) printf("node : %s parent : %s\n",node->info.kata,node->parent->info.kata);
+	AddTree(&(*root), info, &nodes, numTeks);
 	
 	int pat1 = 0, pat2 = 0;
-	while ( node->parent )
-<<<<<<< HEAD
+	while ( nodes->parent )
 	{
 		pat1 = pat2;
 		
-		if ( node == node->parent->right ) {
+		if ( nodes == nodes->parent->right ) {
 			pat2 = 1;
 		} else {
 			pat2 = 0;
 		}
 		
-		node = node->parent;
-		if ( !BalanceNode(node) ){
-			Balancing( node, pat1, pat2);//printf("node %s %d\n",node->parent->info.kata, node->parent->height);
-=======
-	{printf("avl, whilein\n");
-		pat1 = pat2;
-		printf("avl, before compare\n");
-		if ( node == node->parent->right ) {
-			pat2 = 1;printf("right\n");
-		} else {
-			pat2 = 0;printf("left\n");
-		}printf("avl, after compare\n");
-		
-		node = node->parent;
-		if ( !BalanceNode(node) ){
-			printf("avl, beofre balancing pat1 %d pat2 %d\n",pat1,pat2);Balancing( node, pat1, pat2);//printf("node %s %d\n",node->parent->info.kata, node->parent->height);
->>>>>>> master
-			node = node->parent;
-//			if ( node->parent ) {
-//				DecreaseHeight(node->parent);
-//			}
-//			printf("\nInorder : \n");PrintInorder(node);
-<<<<<<< HEAD
-			Rooter(&(*root));
+		nodes = nodes->parent;
+		if ( !isBalance(nodes) ){
+			BalancingTree( nodes, pat1, pat2);//printf("node %s %d\n",node->parent->info.kata, node->parent->height);
+			nodes = nodes->parent;
+//			
+			toParent(&(*root));
 		}
 	}
-=======
-			Rooter(&(*root));printf("avl, after balancing\n");
-		}printf("avl, whileout\n");
-	}
-	printf("avl,out\n");
->>>>>>> master
 }
 
-void Rooter (address *root)
-{
-	while ( (*root)->parent )
-	{
-		(*root) = (*root)->parent;
-	}
-}
-
-bool BalanceNode (address node)
-{
+//seimbang gak left right node
+bool isBalance (addrStat node){
 	int l = 0, r = 0;
 	
 	l = (node->left)? node->left->height+1: 0;
 	r = (node->right)? node->right->height+1: 0;
+	
 	if (r-1 > l) {
 		return false;
 	} else if (l-1 > r) {
@@ -91,13 +47,9 @@ bool BalanceNode (address node)
 	}
 }
 
-void Balancing (address node, int pat1, int pat2)
-<<<<<<< HEAD
-{
-=======
-{printf("balancing, in\n");
->>>>>>> master
-	address temp1, temp2, temp3;
+//proses penyeimbangan atau AVL
+void BalancingTree (addrStat node, int pat1, int pat2){
+	addrStat temp1, temp2, temp3;
 	
 	if ( pat2 == 1 ) {			
 		temp2 = node->right;
@@ -121,94 +73,75 @@ void Balancing (address node, int pat1, int pat2)
 	temp1 = node;
 	
 	if ( pat1 == pat2 ) {
-		if ( pat2 == 1 ) {printf("left left\n");
-			RotateLeft(temp1, temp2);
+		if ( pat2 == 1 ) {
+			LeftRotation(temp1, temp2);
 		}
-		else {printf("right right\n");
-			RotateRight(temp1, temp2);
+		else {
+			RightRotation(temp1, temp2);
 		}
 	} 
 	else {
-		if ( pat2 == 1 ) {printf("right left\n");
-			RotateRight(temp2, temp3);
-			RotateLeft(temp1, temp3);
+		if ( pat2 == 1 ) {
+			RightRotation(temp2, temp3);
+			LeftRotation(temp1, temp3);
 		}
-		else {printf("left right\n");
-			RotateLeft(temp2, temp3);
-			RotateRight(temp1, temp3);
+		else {
+			LeftRotation(temp2, temp3);
+			RightRotation(temp1, temp3);
 		}
-	}printf("balancing, out\n");		
+	}	
 }
 
-void DecreaseHeight (address node)
-{
-	if ( node ) {
-		node->height -= 1;
-		DecreaseHeight( node->parent );
-	} 
-}
+void OrderDecrement(addrStat node);
 
-int Higher (address left, address right)
-{
-	if (left && right) {
-		if (left->height >= right->height) {
-			return left->height + 1;
-		} else {
-			return right->height + 1;
-		}
-	}
-	else if (left) {
-		return left->height + 1;
-	}
-	else {
-		return right->height + 1;
+int OrderHigher(addrStat left, addrStat right);
+
+//menambah height parent dari node  baru
+void OrderIncrement(addrStat node);
+
+void newNumberOfAmount(StatData *info, int numTeks){
+	int i;
+	
+	for(i = 1; i <= MAX_DOC; i++){
+		(*info).amount[i-1] = (i == numTeks) ? 1 : 0;
 	}
 }
 
-void IncreaseHeight (address node)
-{
-	if ( node ) {
-		node->height += 1;
-		IncreaseHeight( node->parent );
-	}
-}
-
-void InsertTree (address *root, infotype info, address *newnode)
-{
+//penambahan node ke tree ssecara bst atau sorted
+void AddTree(addrStat *root, StatData info, addrStat *newnode, int numOfTeks){
 	if ( !(*root) ) {
-		(*root) = NewNode(info);
+		(*root) = Alloc(info);
 		(*newnode) = (*root);
 	}
 	else {
 		if ( strcmp((*root)->info.kata, info.kata) == 0 ) {
-			(*root)->info.amount++;
+			(*root)->info.amount[numOfTeks-1]++;
 			(*newnode) = (*root);
 		}
 		else if ( strcmp((*root)->info.kata, info.kata) == -1 ) {
 			if ( (*root)->right ) {
-				InsertTree (&(*root)->right, info, &(*newnode));
+				AddTree (&(*root)->right, info, &(*newnode), numOfTeks);
 			} else {
-				(*root)->right = NewNode(info);
+				(*root)->right = Alloc(info);
 				(*root)->right->parent = (*root);
 				(*newnode) = (*root)->right;
-				RefreshHeight((*newnode));
+				RefreshOrder((*newnode));
 			}
 		}
 		else {
 			if ( (*root)->left ) {
-				InsertTree (&(*root)->left, info, &(*newnode));
+				AddTree (&(*root)->left, info, &(*newnode), numOfTeks);
 			} else {
-				(*root)->left = NewNode(info);
+				(*root)->left = Alloc(info);
 				(*root)->left->parent = (*root);
 				(*newnode) = (*root)->left;
-				RefreshHeight((*newnode));
+				RefreshOrder((*newnode));
 			}
 		}
 	}
 }
 
-void NewHeight (address node)
-{
+void NewOrder(addrStat node){
 	if ( node->left && node->right ) {
 		node->height = (node->left->height >= node->right->height) ? node->left->height+1 : node->right->height+1;
 	}
@@ -223,9 +156,10 @@ void NewHeight (address node)
 	}
 }
 
-address NewNode (infotype info)
-{
-	address node = (address)malloc(sizeof(Node));
+//bikin node baru
+addrStat Alloc (StatData info){
+	
+	addrStat node = (addrStat)malloc(sizeof(StatBlock));
 	node->parent = NULL;
 	node->left = NULL;
 	node->right = NULL;
@@ -235,39 +169,45 @@ address NewNode (infotype info)
 	return node;
 }
 
-void PrintInorder (address root)
-{
+void InorderStat(addrStat root){
 	if (root) {
-		PrintInorder(root->left);
-		printf("%s %d %d",root->info.kata, root->info.amount, root->height);
-		PrintInorder(root->right);
+		InorderStat(root->left);
+		printf("%s",root->info.kata);
+		AmountPrint(root->info);
+		printf("\n");
+		InorderStat(root->right);
 	}
 }
 
-void PrintPreorder (address root)
-{
-	if (root) {
-		printf("%s %d %d",root->info.kata, root->info.amount, root->height);
-		PrintPreorder(root->left);
-		PrintPreorder(root->right);
+void AmountPrint(StatData info){
+	int i;
+	
+	for(i=0;i<MAX_DOC;i++){
+		printf(" %d", info.amount[i]);
 	}
 }
 
-void RefreshHeight (address node)
-{
+void PreorderStat (addrStat root);
+
+void toParent(addrStat *root){
+	while ( (*root)->parent )
+	{
+		(*root) = (*root)->parent;
+	}
+}
+
+void RefreshOrder(addrStat node){
 	if (node) {
-		printf("\nrefresh, %s from %d to ",node->info.kata,node->height);
-		NewHeight(node);
-		printf("%d\n",node->height);
+		NewOrder(node);
 		if (node->parent) {
-			RefreshHeight(node->parent);
+			RefreshOrder(node->parent);
 		}
 	}
 }
 
-void RotateLeft (address node1, address node2)
-{
-	address node = node1->right;
+//node diputar berlawanan arah jarum jam
+void LeftRotation(addrStat node1, addrStat node2){
+	addrStat node = node1->right;
 	node1->right = node2->left;
 	node2->left = node2->parent;
 	node2->parent = node1->parent;
@@ -280,12 +220,12 @@ void RotateLeft (address node1, address node2)
 		}
 	}
 	node1->parent = node;
-	RefreshHeight(node2->left);
+	RefreshOrder(node2->left);
 }
 
-void RotateRight (address node1, address node2)
-{
-	address node = node1->left;
+//node diputar searah jarum jam
+void RightRotation (addrStat node1, addrStat node2){
+	addrStat node = node1->left;
 	node1->left = node2->right;
 	node2->right = node2->parent;
 	node2->parent = node1->parent;
@@ -298,5 +238,5 @@ void RotateRight (address node1, address node2)
 		}
 	}
 	node1->parent = node;
-	RefreshHeight(node2->right);
+	RefreshOrder(node2->right);
 }

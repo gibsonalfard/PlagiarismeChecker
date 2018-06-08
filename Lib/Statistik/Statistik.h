@@ -1,56 +1,63 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
+
+#define MAX_DOC 3
 
 typedef struct info{
 	char kata[40];
-	int amount[3];	
-} infotype;
+	int amount[MAX_DOC];
+} StatData;
 
-typedef struct node* address;
+typedef struct nodes* addrStat;
 
-typedef struct node {
-	address parent;
-	address left;
-	address right;
+typedef struct nodes {
+	addrStat parent;
+	addrStat left;
+	addrStat right;
 	int height;
-	infotype info;
-} Node;
+	StatData info;
+} StatBlock;
 
 //penambahan teks ke tree dan langsung dibuat avl
-void AVLTree (address *root, char teks[]);
+void AddStat (addrStat *root, char teks[], int numTeks);
 
 //seimbang gak left right node
-bool BalanceNode (address node);
+bool isBalance (addrStat node);
 
 //proses penyeimbangan atau AVL
-void Balancing (address node, int pat1, int pat2);
+void BalancingTree (addrStat node, int pat1, int pat2);
 
-void DecreaseHeight (address node);
+void OrderDecrement (addrStat node);
 
-int Higher (address left, address right);
+int OrderHigher (addrStat left, addrStat right);
 
 //menambah height parent dari node  baru
-void IncreaseHeight (address node);
+void OrderIncrement (addrStat node);
 
 //penambahan node ke tree ssecara bst atau sorted
-void InsertTree (address *root, infotype info, address *newnode);
+void AddTree (addrStat *root, StatData info, addrStat *newnode, int numOfTeks);
 
-void NewHeight (address node);
+void NewOrder (addrStat node);
 
 //bikin node baru
-address NewNode (infotype info);
+addrStat Alloc (StatData info);
 
-void PrintInorder (address root);
+void InorderStat (addrStat root);
 
-void PrintPreorder (address root);
+void PreorderStat (addrStat root);
 
-void Rooter (address *root);
+void toParent (addrStat *root);
 
-void RefreshHeight (address node);
+void RefreshOrder (addrStat node);
 
 //node diputar berlawanan arah jarum jam
-void RotateLeft (address node1, address node2);
+void LeftRotation (addrStat node1, addrStat node2);
 
 //node diputar searah jarum jam
-void RotateRight (address node1, address node2);
+void RightRotation (addrStat node1, addrStat node2);
+
+void newNumberOfAmount(StatData *info, int numTeks);
+
+void AmountPrint(StatData info);
