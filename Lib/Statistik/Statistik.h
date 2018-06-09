@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include "../String/String.h"
 
 #define MAX_DOC 3
 
 typedef struct info{
-	char kata[40];
+	String kata;
 	int amount[MAX_DOC];
 } StatData;
 
@@ -21,7 +22,7 @@ typedef struct nodes {
 } StatBlock;
 
 //penambahan teks ke tree dan langsung dibuat avl
-void AddStat (addrStat *root, char teks[], int numTeks);
+void AddStat (addrStat *root, String teks, int numTeks);
 
 //seimbang gak left right node
 bool isBalance (addrStat node);
@@ -37,7 +38,7 @@ int OrderHigher (addrStat left, addrStat right);
 void OrderIncrement (addrStat node);
 
 //penambahan node ke tree ssecara bst atau sorted
-void AddTree (addrStat *root, StatData info, addrStat *newnode, int numOfTeks);
+//void AddTree (addrStat *root, StatData info, addrStat *newnode, int numOfTeks);
 
 void NewOrder (addrStat node);
 
@@ -60,4 +61,6 @@ void RightRotation (addrStat node1, addrStat node2);
 
 void newNumberOfAmount(StatData *info, int numTeks);
 
-void AmountPrint(StatData info);
+void AddTree(addrStat *root, StatData info, addrStat *newnode, int numOfTeks);
+
+//void AmountPrint(StatData info);
