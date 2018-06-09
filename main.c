@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]) 
 {	
-	// Uji Cast Folding
+	/* Uji Case Folding */
 	char location[50] = "test.txt";
 	String text = "";
 	addr root = NULL;
@@ -32,9 +32,7 @@ int main(int argc, char *argv[])
 	*/
 	/*
 	addrStat root = NULL;
-	StatData info;
-	char text[40];
-	int i = 0;
+	root = Tokenizing(text, 1, root);
 	
 	for(i = 0; i < 4; i++){
 		printf("Nama 1-%d :", i);	scanf("%s", &text);
@@ -48,6 +46,14 @@ int main(int argc, char *argv[])
 		AddStat(&root, info.kata, 2);
 	}
 	
+//	int i = 0;
+//	
+//	for(i = 0; i < 4; i++){
+//		printf("Nama %d :", i);	scanf("%s", &text);
+//		strcpy(info.kata,text);
+//		AddStat(&root, info.kata, 1);
+//	}
+
 	InorderStat(root); printf("\n");
 	*/
 	system("pause");	

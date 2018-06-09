@@ -1,11 +1,11 @@
 #include "Statistik.h"
 
 //penambahan teks ke tree dan langsung dibuat avl
-void AddStat (addrStat *root, char teks[], int numTeks){
+void AddStat (addrStat *root, String teks, int numTeks){
 	StatData info;
 	addrStat nodes = NULL;
 	
-	strcpy(info.kata, teks);
+	info.kata = teks;
 	newNumberOfAmount(&info, numTeks);
 	
 	AddTree(&(*root), info, &nodes, numTeks);
