@@ -2,7 +2,7 @@
 
 String caseFolding(String text, char *location){	
 	FILE *F;
-	location = concatWord("lib/File/",location);
+	location = concatWord("File/",location);
 	F = fopen(location, "r");
 	int c, i;
 	char letter;
@@ -10,7 +10,7 @@ String caseFolding(String text, char *location){
 	
 	while((c = fgetc(F)) != EOF){
 		//Pengecekan tanda baca menggunakan kode ASCII
-		if((c > 64 && c < 91) || (c > 96 && c < 123) || c == 32){
+		if((c > 64 && c < 91) || (c > 96 && c < 123) || c == 32 || c == 10){
 			letter = tolower((char)c);
 			word = concatLetter(word, letter);
 		}
@@ -27,7 +27,7 @@ String caseFolding(String text, char *location){
 
 void getStopwords(addr *T){
 	FILE *F;
-	F = fopen("lib/File/stopword.txt", "r");
+	F = fopen("File/stopwordEN.txt", "r");
 	
 	int c;
 	String word = "";
@@ -35,7 +35,6 @@ void getStopwords(addr *T){
 	while((c = fgetc(F)) != EOF){
 		if(c == 10){
 			AVLTree(&(*T), word);
-			//printf("%s\n", word);
 			word="";
 		}else{
 			word = concatLetter(word,(char)c);
@@ -45,12 +44,14 @@ void getStopwords(addr *T){
 	fclose(F);
 }
 
-addrStat Tokenizing(String text, int doc, addrStat root){
+addrStat Tokenizing(String text, int doc){
 	int n = strlen(text), i;
 	String word = "";
 	StatData info;
+	addrStat root = NULL;
+	
 	for(i = 0; i < n; i++){
-		if(text[i] == 32){
+		if(text[i] == 32 || text[i] == 10){
 			AddStat(&root, word, doc);
 			word = "";
 		}else {

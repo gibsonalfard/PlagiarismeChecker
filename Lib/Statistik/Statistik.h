@@ -63,4 +63,4 @@ void newNumberOfAmount(StatData *info, int numTeks);
 
 void AddTree(addrStat *root, StatData info, addrStat *newnode, int numOfTeks);
 
-//void AmountPrint(StatData info);
+void AmountPrint(StatData info);

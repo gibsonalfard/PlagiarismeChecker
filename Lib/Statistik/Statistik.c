@@ -160,11 +160,15 @@ void NewOrder(addrStat node){
 addrStat Alloc (StatData info){
 	
 	addrStat node = (addrStat)malloc(sizeof(StatBlock));
-	node->parent = NULL;
-	node->left = NULL;
-	node->right = NULL;
-	node->height = 0;
-	node->info = info;
+	if(node != NULL){
+		node->parent = NULL;
+		node->left = NULL;
+		node->right = NULL;
+		node->height = 0;
+		node->info = info;	
+	}else{
+		printf("Lack of Memory\n");
+	}
 	
 	return node;
 }
