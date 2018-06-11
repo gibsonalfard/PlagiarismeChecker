@@ -52,3 +52,5 @@ void RotateLeft (addr node1, addr node2);
 
 //node diputar searah jarum jam
 void RotateRight (addr node1, addr node2);
+
+addr searchNode(addr root, char* word);

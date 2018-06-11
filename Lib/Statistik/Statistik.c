@@ -10,23 +10,35 @@ void AddStat (addrStat *root, String teks, int numTeks){
 	
 	AddTree(&(*root), info, &nodes, numTeks);
 	
+	//afterInsert(&nodes);
+	
+	toParent(&(*root));
+}
+
+void afterInsert(addrStat *nodes){
 	int pat1 = 0, pat2 = 0;
-	while ( nodes->parent )
+	/*
+	printf("%x\n",(*nodes));
+	if(*nodes != NULL){
+		printf("%s\n", (*nodes)->info.kata);
+	}
+	system("pause");
+	*/
+	while ( (*nodes)->parent )
 	{
 		pat1 = pat2;
 		
-		if ( nodes == nodes->parent->right ) {
+		if ( (*nodes) == (*nodes)->parent->right ) {
 			pat2 = 1;
 		} else {
 			pat2 = 0;
 		}
 		
-		nodes = nodes->parent;
-		if ( !isBalance(nodes) ){
-			BalancingTree( nodes, pat1, pat2);//printf("node %s %d\n",node->parent->info.kata, node->parent->height);
-			nodes = nodes->parent;
-//			
-			toParent(&(*root));
+		(*nodes) = (*nodes)->parent;
+		
+		if ( !isBalance(*nodes) ){
+			BalancingTree( (*nodes), pat1, pat2);
+			(*nodes) = (*nodes)->parent;
 		}
 	}
 }
@@ -92,12 +104,36 @@ void BalancingTree (addrStat node, int pat1, int pat2){
 	}	
 }
 
-void OrderDecrement(addrStat node);
+void OrderDecrement(addrStat node){
+	if ( node ) {
+		node->height -= 1;
+		OrderDecrement( node->parent );
+	}
+}
 
-int OrderHigher(addrStat left, addrStat right);
+int OrderHigher(addrStat left, addrStat right){
+	if (left && right) {
+		if (left->height >= right->height) {
+			return left->height + 1;
+		} else {
+			return right->height + 1;
+		}
+	}
+	else if (left) {
+		return left->height + 1;
+	}
+	else {
+		return right->height + 1;
+	}
+}
 
 //menambah height parent dari node  baru
-void OrderIncrement(addrStat node);
+void OrderIncrement(addrStat node){
+	if ( node ) {
+		node->height += 1;
+		OrderIncrement( node->parent );
+	}
+}
 
 void newNumberOfAmount(StatData *info, int numTeks){
 	int i;
@@ -115,10 +151,10 @@ void AddTree(addrStat *root, StatData info, addrStat *newnode, int numOfTeks){
 	}
 	else {
 		if ( strcmp((*root)->info.kata, info.kata) == 0 ) {
-			(*root)->info.amount[numOfTeks-1]++;
+			(*root)->info.amount[numOfTeks-1] += 1;
 			(*newnode) = (*root);
 		}
-		else if ( strcmp((*root)->info.kata, info.kata) == -1 ) {
+		else if ( strcmp((*root)->info.kata, info.kata) < 0  ) {
 			if ( (*root)->right ) {
 				AddTree (&(*root)->right, info, &(*newnode), numOfTeks);
 			} else {
@@ -165,7 +201,7 @@ addrStat Alloc (StatData info){
 		node->left = NULL;
 		node->right = NULL;
 		node->height = 0;
-		node->info = info;	
+		node->info = info;
 	}else{
 		printf("Lack of Memory\n");
 	}
@@ -175,11 +211,15 @@ addrStat Alloc (StatData info){
 
 void InorderStat(addrStat root){
 	if (root) {
-		InorderStat(root->left);
-		printf("%s",root->info.kata);
+		if(root->left != NULL){
+			InorderStat(root->left);
+		}
+		printf("%s ",root->info.kata);
 		AmountPrint(root->info);
 		printf("\n");
-		InorderStat(root->right);
+		if(root->right != NULL){
+			InorderStat(root->right);	
+		}
 	}
 }
 
@@ -191,7 +231,19 @@ void AmountPrint(StatData info){
 	}
 }
 
-void PreorderStat (addrStat root);
+void PreorderStat (addrStat root){
+	if (root) {
+		printf("%s ",root->info.kata);
+		//AmountPrint(root->info);
+		//printf("\n");
+		if(root->left != NULL){
+			InorderStat(root->left);
+		}
+		if(root->right != NULL){
+			InorderStat(root->right);	
+		}
+	}
+}
 
 void toParent(addrStat *root){
 	while ( (*root)->parent )
@@ -225,6 +277,28 @@ void LeftRotation(addrStat node1, addrStat node2){
 	}
 	node1->parent = node;
 	RefreshOrder(node2->left);
+	/*
+	if ( !isBalance(node2) ){
+		printf("Not Balance 1\t");
+		int pat2 = 0, pat1 = 0;
+		pat1 = pat2;
+		
+		printf("%x\n",node2->parent->right);
+		system("pause");
+		if(node2->parent->right != NULL){
+			if ( (node2) == (node2)->parent->right ) {
+				pat1 = 0;
+				pat2 = 1;
+			} else {
+				pat1 = 1;
+				pat2 = 0;
+			}
+			
+			BalancingTree( (node2), pat1, pat2);
+		    (node2) = (node2)->parent;	
+		}
+		system("pause");
+	}*/
 }
 
 //node diputar searah jarum jam
@@ -243,4 +317,10 @@ void RightRotation (addrStat node1, addrStat node2){
 	}
 	node1->parent = node;
 	RefreshOrder(node2->right);
+	/*
+	if ( !isBalance(node2) ){
+		printf("Not Balance 2\n");
+		BalancingTree( (node2), node2->left->height, node2->right->height);
+		(node2) = (node2)->parent;
+	}*/
 }

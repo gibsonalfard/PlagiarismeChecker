@@ -198,9 +198,13 @@ addr NewNode (infotype info)
 void PrintInorder (addr root)
 {
 	if (root) {
-		PrintInorder(root->left);
+		if(root->left != NULL){
+			PrintInorder(root->left);	
+		}
 		printf("%s ",root->info);
-		PrintInorder(root->right);
+		if(root->right != NULL){
+			PrintInorder(root->right);	
+		}
 	}
 }
 
@@ -259,4 +263,18 @@ void RotateRight (addr node1, addr node2)
 	}
 	node1->parent = node;
 	RefreshHeight(node2->right);
+}
+
+addr searchNode(addr root, char* word){
+	addr found = NULL;
+	
+	if (root) {
+		if( strcmp(root->info, word) == 0 ){
+			return root;
+		}else{
+			found = (strcmp(root->info, word) < 0) ? searchNode(root->right, word) : searchNode(root->left, word);
+		}
+		
+		return found;
+	}
 }

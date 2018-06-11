@@ -44,7 +44,7 @@ void getStopwords(addr *T){
 	fclose(F);
 }
 
-addrStat Tokenizing(String text, int doc){
+addrStat Tokenizing(String text, int doc,addr stop){
 	int n = strlen(text), i;
 	String word = "";
 	StatData info;
@@ -52,16 +52,21 @@ addrStat Tokenizing(String text, int doc){
 	
 	for(i = 0; i < n; i++){
 		if(text[i] == 32 || text[i] == 10){
-			AddStat(&root, word, doc);
+			if(!isStopword(word, stop)){
+				AddStat(&root, word, doc);
+			}
 			word = "";
+			//printf("Tokening\n");
+			//InorderStat(root); printf("\n");
+			//PreorderStat(root); printf("\n\n");
+			//system("pause");
 		}else {
 			word = concatLetter(word, text[i]);
 		}
-		
 	}
 	return root;
 }
 
-//bool isStopword(String word){
-//		
-//}
+bool isStopword(String word, addr stopword){
+	return searchNode(stopword, word) != NULL;
+}

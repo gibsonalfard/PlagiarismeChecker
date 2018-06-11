@@ -1,1 +1,72 @@
-Brute force stemmers employ a lookup table which contains relations between root forms and inflected forms. To stem a word, the table is queried to find a matching inflection. If a matching inflection is found, the associated root form is returned. Brute force approaches are criticized for their general lack of elegance in that no algorithm is applied that would more quickly converge on a solution. In other words, there are more operations performed during the search than should be necessary. Brute force searches consume immense amounts of storage to host the list of relations (relative to the task). The algorithm is only accurate to the extent that the inflected form already exists in the table. Given the number of words in a given language, like English, it is unrealistic to expect that all words form can be captured and manually recorded by human action alone. Manual training of the algoritm sorting and searching and i ran, ran so far away i could
+Spent 24 hours
+I need more hours with you
+You spent the weekend
+Getting even, ooh ooh
+We spent the late nights
+Making things right, between us
+But now it's all good baby
+Roll that Backwood baby
+And play me close
+'Cause girls like you
+Run around with guys like me
+'Til sundown, when I come through
+I need a girl like you, yeah yeah
+Girls like you
+Love fun, yeah me too
+What I want when I come through
+I need a girl like you, yeah yeah
+Yeah yeah yeah
+Yeah yeah yeah
+I need a girl like you, yeah yeah
+Yeah yeah yeah
+Yeah yeah yeah
+I need a girl like you, yeah yeah
+I spent last night
+On the last flight to you
+Took a whole day up
+Trying to get way up, ooh ooh
+We spent the daylight
+Trying to make things right between us
+And now it's all good baby
+Roll that Backwood baby
+And play me close
+'Cause girls like you
+Run around with guys like me
+'Til sundown, when I come through
+I need a girl like you, yeah yeah
+Girls like you
+Love fun, yeah me too
+What I want when I come through
+I need a girl like you, yeah yeah
+Yeah yeah yeah
+Yeah yeah yeah
+I need a girl like you, yeah yeah
+Yeah yeah yeah
+Yeah yeah yeah
+I need a girl like you, yeah yeah
+I need a girl like you, yeah yeah
+I need a girl like you
+Maybe it's 6:45
+Maybe I'm barely alive
+Maybe you've taken my shit for the last time, yeah
+Maybe I know that I'm drunk
+Maybe I know you're the one
+Maybe I'm thinking it's better if you drive
+'Cause girls like you
+Run around with guys like me
+'Til sundown, when I come through
+I need a girl like you, yeah yeah
+'Cause girls like you
+Run around with guys like me
+'Til sundown, when I come through
+I need a girl like you, yeah yeah
+Girls like you
+Love fun, yeah me too
+What I want when I come through
+I need a girl like you, yeah yeah
+Yeah yeah yeah
+Yeah yeah yeah
+I need a girl like you, yeah yeah
+Yeah yeah yeah
+Yeah yeah yeah
+I need a girl like you

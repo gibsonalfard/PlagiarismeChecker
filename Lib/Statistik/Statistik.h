@@ -24,6 +24,8 @@ typedef struct nodes {
 //penambahan teks ke tree dan langsung dibuat avl
 void AddStat (addrStat *root, String teks, int numTeks);
 
+void afterInsert(addrStat *nodes);
+
 //seimbang gak left right node
 bool isBalance (addrStat node);
 
