@@ -5,24 +5,30 @@
 
 int main(int argc, char *argv[]) 
 {	
-	/* Uji Case Folding */
-	char location[50] = "test.txt";
+	/*Deklarasi Variable*/
 	String text = "";
-	char word[15];
+	char word[40];
+	char arr[3][40];
 	addr stopword = NULL;
 	addrStat treeOfWord = NULL;
-	text = caseFolding(text, location);
+	int i;
 	
-	//printf("%s\n\n", text);
-	
+	/* Start Program*/
 	getStopwords(&stopword);
 	
-	PrintInorder(stopword);	printf("\n\n");
+	for(i = 0; i < 3; i++){
+		scanf("%s", arr[i]);
+	}
 	
-	treeOfWord = Tokenizing(text, 1, stopword);
+	for(i = 0; i < 3; i++){
+		//printf("%s\n", arr[i]);
+		text = "";
+		text = caseFolding(text, arr[i]);
+		Tokenizing(text, i+1, stopword, &treeOfWord);
+	}
+	
 	printf("Akhir : \n");
 	InorderStat(treeOfWord); printf("\n");
-	//PreorderStat(treeOfWord); printf("\n");
 	
 	system("pause");	
 	return 0;

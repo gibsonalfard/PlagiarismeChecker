@@ -2,7 +2,7 @@
 
 String caseFolding(String text, char *location){	
 	FILE *F;
-	location = concatWord("File/",location);
+	location = concatWord("Storage/",location);
 	F = fopen(location, "r");
 	int c, i;
 	char letter;
@@ -44,6 +44,7 @@ void getStopwords(addr *T){
 	fclose(F);
 }
 
+/*
 addrStat Tokenizing(String text, int doc,addr stop){
 	int n = strlen(text), i;
 	String word = "";
@@ -66,6 +67,29 @@ addrStat Tokenizing(String text, int doc,addr stop){
 	}
 	return root;
 }
+*/
+
+void Tokenizing(String text, int doc, addr stop, addrStat *root){
+	int n = strlen(text), i;
+	String word = "";
+	StatData info;
+	
+	for(i = 0; i < n; i++){
+		if(text[i] == 32 || text[i] == 10){
+			if(!isStopword(word, stop)){
+				AddStat(&(*root), word, doc);
+			}
+			word = "";
+			//printf("Tokening\n");
+			//InorderStat(root); printf("\n");
+			//PreorderStat(root); printf("\n\n");
+			//system("pause");
+		}else {
+			word = concatLetter(word, text[i]);
+		}
+	}
+}
+
 
 bool isStopword(String word, addr stopword){
 	return searchNode(stopword, word) != NULL;
