@@ -261,6 +261,7 @@ void RotateRight (addr node1, addr node2)
 			node1->parent->left = node2;
 		}
 	}
+	
 	node1->parent = node;
 	RefreshHeight(node2->right);
 }

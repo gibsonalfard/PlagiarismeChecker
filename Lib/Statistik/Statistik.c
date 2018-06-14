@@ -10,7 +10,7 @@ void AddStat (addrStat *root, String teks, int numTeks){
 	
 	AddTree(&(*root), info, &nodes, numTeks);
 	
-	//afterInsert(&nodes);
+	afterInsert(&nodes);
 	
 	toParent(&(*root));
 }
@@ -275,6 +275,11 @@ void LeftRotation(addrStat node1, addrStat node2){
 			node1->parent->left = node2;
 		}
 	}
+	
+	if (node1->right){
+		node1->right->parent = node1;
+	}
+	
 	node1->parent = node;
 	RefreshOrder(node2->left);
 	/*
@@ -315,8 +320,14 @@ void RightRotation (addrStat node1, addrStat node2){
 			node1->parent->left = node2;
 		}
 	}
+	
+	if (node1->left){
+		node1->left->parent = node1;
+	}
+	
 	node1->parent = node;
 	RefreshOrder(node2->right);
+	
 	/*
 	if ( !isBalance(node2) ){
 		printf("Not Balance 2\n");
