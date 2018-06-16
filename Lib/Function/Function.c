@@ -75,8 +75,9 @@ void Tokenizing(String text, int doc, addr stop, addrStat *root){
 	StatData info;
 	
 	for(i = 0; i < n; i++){
-		if(text[i] == 32 || text[i] == 10){
+		if(text[i] == 32 || text[i] == 10 && strlen(word) != 0){
 			if(!isStopword(word, stop)){
+				word[stem(word, 0, strlen(word)-1) + 1] = 0;
 				AddStat(&(*root), word, doc);
 			}
 			word = "";
@@ -93,4 +94,25 @@ void Tokenizing(String text, int doc, addr stop, addrStat *root){
 
 bool isStopword(String word, addr stopword){
 	return searchNode(stopword, word) != NULL;
+}
+
+String StemString(String text){
+	int n = strlen(text), i;
+	String word = "";
+	String finalWord = "";
+	
+	for(i = 0; i < n; i++){
+		if(text[i] == 32 || text[i] == 10){
+			//printf("Word : %s %d\t", word, strlen(word));
+			word[stem(word, 0, strlen(word)-1) + 1] = 0;
+			//printf("Word : %s %d\n", word, strlen(word));
+			finalWord = concatWord(finalWord, word);
+			finalWord = concatLetter(finalWord, ' ');
+			word = "";
+		}else {
+			word = concatLetter(word, text[i]);
+		}
+	}
+	//printf("Kotak Masih ada : %s", finalWord);
+	return finalWord;
 }

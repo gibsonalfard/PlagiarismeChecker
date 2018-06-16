@@ -21,7 +21,7 @@ LogOutputEnabled=0
 OverrideOutput=0
 OverrideOutputName=
 HostApplication=
-Folders=Lib,Lib/AVL,Lib/Function,Lib/Statistik,Lib/String
+Folders=Lib,Lib/AVL,Lib/Function,Lib/Statistik,Lib/StemmingENG,Lib/String
 CommandLine=
 UseCustomMakefile=0
 CustomMakefile=
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=000000000000000000000000000
-UnitCount=9
+UnitCount=11
 
 [VersionInfo]
 Major=1
@@ -134,6 +134,26 @@ BuildCmd=
 FileName=Lib\Statistik\Statistik.h
 CompileCpp=0
 Folder=Lib/Statistik
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit10]
+FileName=Lib\StemmingENG\stemming.c
+CompileCpp=0
+Folder=Lib/StemmingENG
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
+FileName=Lib\StemmingENG\stemming.h
+CompileCpp=0
+Folder=Lib/StemmingENG
 Compile=1
 Link=1
 Priority=1000
