@@ -25,9 +25,9 @@ String caseFolding(String text, char *location){
 	return text;
 }
 
-void getStopwords(addr *T){
+void getStopwords(addr *T, char *namaFile){
 	FILE *F;
-	F = fopen("File/stopwordEN.txt", "r");
+	F = fopen(namaFile, "r");
 	
 	int c;
 	String word = "";
@@ -44,30 +44,24 @@ void getStopwords(addr *T){
 	fclose(F);
 }
 
-/*
-addrStat Tokenizing(String text, int doc,addr stop){
-	int n = strlen(text), i;
-	String word = "";
-	StatData info;
-	addrStat root = NULL;
+void getKataDasar(addr *T, char *namaFile){
+	FILE *F;
+	F = fopen(namaFile, "r");
 	
-	for(i = 0; i < n; i++){
-		if(text[i] == 32 || text[i] == 10){
-			if(!isStopword(word, stop)){
-				AddStat(&root, word, doc);
-			}
-			word = "";
-			//printf("Tokening\n");
-			//InorderStat(root); printf("\n");
-			//PreorderStat(root); printf("\n\n");
-			//system("pause");
-		}else {
-			word = concatLetter(word, text[i]);
+	int c;
+	String word = "";
+	
+	while((c = fgetc(F)) != EOF){
+		if(c == 10){
+			AVLTree(&(*T), word);
+			word="";
+		}else{
+			word = concatLetter(word,(char)c);
 		}
 	}
-	return root;
+	
+	fclose(F);
 }
-*/
 
 void Tokenizing(String text, int doc, addr stop, addrStat *root){
 	int n = strlen(text), i;
