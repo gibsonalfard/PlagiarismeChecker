@@ -36,7 +36,6 @@ different
 dirty
 dry
 early
-
 elastic
 electric
 equal
@@ -75,7 +74,6 @@ living
 long
 loose
 loud
-
 low
 male
 married
@@ -114,7 +112,6 @@ sad
 safe
 same
 second
-
 secret
 separate
 serious

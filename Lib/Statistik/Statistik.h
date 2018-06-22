@@ -4,7 +4,7 @@
 #include <string.h>
 #include "../String/String.h"
 
-#define MAX_DOC 3
+#define MAX_DOC 10
 
 typedef struct info{
 	String kata;
@@ -47,7 +47,7 @@ void NewOrder (addrStat node);
 //bikin node baru
 addrStat Alloc (StatData info);
 
-void InorderStat (addrStat root);
+void InorderStat(addrStat root, int numOfDocument);
 
 void PreorderStat (addrStat root);
 
@@ -65,4 +65,4 @@ void newNumberOfAmount(StatData *info, int numTeks);
 
 void AddTree(addrStat *root, StatData info, addrStat *newnode, int numOfTeks);
 
-void AmountPrint(StatData info);
+void AmountPrint(StatData info, int numOfDocuments);

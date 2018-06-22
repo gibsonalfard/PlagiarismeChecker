@@ -209,24 +209,24 @@ addrStat Alloc (StatData info){
 	return node;
 }
 
-void InorderStat(addrStat root){
+void InorderStat(addrStat root, int numOfDocument){
 	if (root) {
 		if(root->left != NULL){
-			InorderStat(root->left);
+			InorderStat(root->left, numOfDocument);
 		}
 		printf("%s ",root->info.kata);
-		AmountPrint(root->info);
+		AmountPrint(root->info, numOfDocument);
 		printf("\n");
 		if(root->right != NULL){
-			InorderStat(root->right);	
+			InorderStat(root->right, numOfDocument);	
 		}
 	}
 }
 
-void AmountPrint(StatData info){
+void AmountPrint(StatData info, int numOfDocuments){
 	int i;
 	
-	for(i=0;i<MAX_DOC;i++){
+	for(i=0;i<numOfDocuments;i++){
 		printf(" %d", info.amount[i]);
 	}
 }
@@ -237,10 +237,10 @@ void PreorderStat (addrStat root){
 		//AmountPrint(root->info);
 		//printf("\n");
 		if(root->left != NULL){
-			InorderStat(root->left);
+			PreorderStat(root->left);
 		}
 		if(root->right != NULL){
-			InorderStat(root->right);	
+			PreorderStat(root->right);	
 		}
 	}
 }
