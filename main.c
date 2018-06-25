@@ -3,6 +3,12 @@
 
 #include "lib/Function/Function.h"
 
+void banner(){
+	printf("         ================================================================\n");
+	printf("\n                         PROGRAM PEMERIKSA PLAGIARISME\n");
+	printf("\n         ================================================================\n");
+}
+
 int main(int argc, char *argv[]) 
 {	
 	/*Deklarasi Variable*/
@@ -13,6 +19,7 @@ int main(int argc, char *argv[])
 	addr stopword = NULL;
 	addr kataDasar = NULL;
 	Queue similar;
+	char arr[n][40];
 	char ENG[] = "File/stopwordEN.txt";
 	char IND[] = "File/stopwordID.txt";
 	char ENGWords[] = "File/KataDasarEN.txt";
@@ -21,27 +28,34 @@ int main(int argc, char *argv[])
 	CreateQueue(&similar);
 	
 	/* Start Program*/
-	printf("1. Bahasa Indonesia\n");
-	printf("2. Bahasa Inggris\n");
-	printf("\nPilih bahasa: "); scanf("%d", &choice);
+	banner();
+	printf("\n         1. Bahasa Indonesia\n");
+	printf("\n         2. Bahasa Inggris\n");
+	printf("\n         Pilih bahasa: "); scanf("%d", &choice);
 	
 	switch(choice){
 		case 1: 
+				system("cls");
+				banner();
 				getStopwords(&stopword, IND);
-//				getKataDasar(&kataDasar, INDWords);
-				printf("Masukan jumlah file yang akan dibandingkan: "); scanf("%d", &n);
+//				getBasicWords(&kataDasar, INDWords);
+				printf("\n         Masukan jumlah file yang akan dibandingkan: "); scanf("%d", &n);
+				for(i = 0; i < n; i++){
+					printf("Nama File %d : ", i+1);	scanf("%s", arr[i]);
+				}
 		break;
 		case 2:
+				system("cls");
+				banner();
 				getStopwords(&stopword, ENG);
-				getKataDasar(&kataDasar, ENGWords);
-				printf("Enter amount of file that will be compared: "); scanf("%d", &n);
+				getBasicWords(&kataDasar, ENGWords);
+				printf("\n         Enter amount of file that will be compared: "); scanf("%d", &n);
+				system("cls");
+				banner();
+				for(i = 0; i < n; i++){
+					printf("\n         File Name %d : ", i+1);	scanf("%s", arr[i]);
+				}
 		break;
-	}
-	
-	char arr[n][40];
-	
-	for(i = 0; i < n; i++){
-		printf("Nama File %d : ", i+1);	scanf("%s", arr[i]);
 	}
 	
 	for(i = 0; i < n; i++){
@@ -53,9 +67,10 @@ int main(int argc, char *argv[])
 	
 	//printf("Akhir : \n");
 	//InorderStat(treeOfWord, n); printf("\n");
-	
+	system("cls");
+	banner();
 	similar = getSimilarityList(treeOfWord, n);
-	printf("Akhir : \n");
+	printf("\n         Akhir : \n");
 	printResult(similar, arr);
 	
 	system("pause");	

@@ -44,7 +44,7 @@ void getStopwords(addr *T, char *namaFile){
 	fclose(F);
 }
 
-void getKataDasar(addr *T, char *namaFile){
+void getBasicWords(addr *T, char *namaFile){
 	FILE *F;
 	F = fopen(namaFile, "r");
 	
@@ -205,8 +205,8 @@ void printResult(Queue Q, char docs[][40]){
 		while(P != Nil){
 			getIndex(Info(P).label, index);
 			similarity = ((float)(Info(P).same)/(float)(Info(P).total))*100;
-			printf("Perbandingan Kemiripan Dokumen %s dan Dokumen %s : \n", docs[index[0]], docs[index[1]]);
-			printf("Kemiripan Dokumen %.2f%c \n", similarity, '%');
+			printf("\n         Perbandingan Kemiripan \n\n         Dokumen %s \n\n         Dokumen %s \n", docs[index[0]], docs[index[1]]);
+			printf("\n         Kemiripan Dokumen %.2f%c \n\n", similarity, '%');
 			//printf("%s / %d / %d\n",Info(P).label, Info(P).same, Info(P).total);
 			P = Next(P);
 		}
