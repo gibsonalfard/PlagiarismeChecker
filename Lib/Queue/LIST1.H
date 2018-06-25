@@ -21,7 +21,7 @@
 typedef struct{
 	char label[30];
 	int same;
-	int total;
+	float total;
 }records;                                      
 typedef struct tElmtlist *addrList;
 typedef struct  tElmtlist{

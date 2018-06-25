@@ -1,0 +1,242 @@
+This book is for a large cross section of modern Java web developers, with various levels of
+experience.
+Learning the Java programming language is a noble cause, but learning merely the Java language
+is not enough in the real world. Java developers have to learn Java EE, a collection of related
+server-side technologies, to put their Java skills to any real use.
+But learning Java EE is not enough either. The Java language along with Java EE may suffce to
+develop web applications for projects in the same organization, as a means to reusability, but the
+diverse landscape of Java on the Web is permeated with several web frameworks, such as Spring
+Web MVC, that make development much easier; thus, a Java web developer has to have the
+knowledge of these web frameworks.
+But this is not enough still. In the very frst line of this introduction, I mentioned that this book is for
+a modern Java web developer. Modern Java is more than just a language; it is now a fully optimized
+platform because several other languages such as Groovy and Scala, called the JVM languages,
+now run on the Java Virtual Machine (JVM). All such JVM languages, especially Groovy, have a close
+association with Java, and you will come across web applications before long where Java and these
+other JVM languages work in tandem. The most ambitious projects will require you to build web
+applications using these JVM languages.
+This book addresses all the needs of a modern Java web developer. It is designed for beginners up
+to intermediate developers and explains the specifcs of Java on the Web. For example, this book is
+perfect for developers who are aware of technologies like MVC but do not yet understand how and
+why they have changed the way web applications are built.
+This book is also for developers who want to learn frameworks other than JSF 2 (which is bundled
+with Java EE). This book covers four types of web frameworks: request based, component based,
+rapid, and reactive. Among these four types, the book covers fve proven web frameworks: Struts 2,
+Spring Web MVC, JSF 2, Grails 2, and Play 2.
+In addition, this book is for developers who have no experience in the Java, Groovy, and Scala
+programming languages but who yearn to create web applications. This book provides the essentials
+of these three languages in the appendixes.
+Instead of simply pronouncing one web framework the best, Learn Java for Web Development
+shows the strengths of the most popular web frameworks by means of a real-world bookstore
+application. Developing a complete real application necessitates a seamless collaboration of
+dynamic functionalities, and the code for building such components is contrived and too involved.
+Instead of focusing on developing such moving parts, this book confnes its attention on leveraging
+the strengths of each web framework.
+How the Book Is Structured
+The book consists of eight chapters, which I’ll describe next, plus the three previously mentioned
+appendixes that introduce the Java, Groovy, and Scala languages.
+Chapter 1: Introducing Java Web Development
+Chapter 1 explains the main objective that shapes this book and highlights what appears in the
+subsequent chapters. This chapter begins with a discussion of a signifcant change in the Java
+landscape, its implication, and what Java exactly means today. The chapter then discusses the three
+key players that join forces in building modern Java web applications: the JVM languages, Java EE,
+and the Java web frameworks.
+This chapter introduces the key features of a modern Java web application such as Ajax and REST,
+WebSocket for real-time web application, the Typesafe stack for a reactive web application, and
+client-side MVC frameworks for responsive and single-page web applications. Finally, the chapter
+introduces some important aspects of modern web development that are beyond the scope of this
+book, such as Java information retrieval on the Web, and brie?y introduces the central component of
+Web 3.0, which is still an open subject of research, the Semantic Web.
+Chapter 2: Building Web Applications Using Servlets and JSP
+Chapter 2 begins with a discussion of the evolution and architecture of web applications. The
+chapter then highlights how to use the standard web API. The frst pass at the sample application
+uses only servlets and JSP. Then the chapter shows you how to build the same application as a
+Model 2 application.
+Chapter 3: Best Practices in Java EE Web Development
+Chapter 3 examines the chain of causality that leads to the need for following best practices.
+The chapter explains the need to evolve projects and introduces Expression Language and JSTL.
+The chapter then discusses the Java EE web tier patterns.
+Chapter 4: Building a Web Application Using Struts 2
+In Chapter 4, you’ll learn about Struts 2. Not as popular as it used to be, Struts 2 is introduced in
+this book for developers who have to maintain legacy applications. This chapter frst introduces
+the key architectural components of Struts 2. Then you will learn to develop your frst application
+using Struts 2 and Maven 4. Moving forward, you will learn to develop the bookstore application and
+integrate with Tiles 3.
+Chapter 5: Building Java Web Applications with Spring Web MVC
+Chapter 5 explains three key objectives of the Spring Framework: loose coupling using dependency
+injection, dealing with cross-cutting concerns using AOP, and removing boilerplate code using
+Spring templates. Elucidating how Spring 3 works, the chapter introduces the Spring Web MVC
+architecture. Then you will learn to build your frst web application using Spring 3 Web MVC. This
+chapter also shows you how to build the bookstore application. You will learn to use the latest
+version of the SpringSource tool suite.
+Chapter 6: Component-Based Web Development Using JSF
+Chapter 6 introduces you to a component-based framework called JSF 2 that is bundled with Java
+EE. After you have familiarized yourself with the request-based framework presented in Chapter 4
+and Chapter 5, understanding JSF 2 will be much easier. This chapter shows you how JSF 2
+represents a paradigm shift in web development and introduces you to key components of the
+JSF 2 architecture. After you have a frm grasp of the architecture components, this chapter shows
+you how to develop your frst JSF 2 application, and along with this you will learn the life-cycle
+phases of a JSF 2 application. Then the chapter shows you how to integrate JSF 2 with the Spring
+Framework so that you can access the database via Spring templates from the JSF 2 web layer.
+Finally, the chapter shows you how to develop the bookstore application.
+Chapter 7: Rapid Web Development with Grails
+Grails is a rapid application development framework that lets you create web applications in record
+time. Chapter 7 introduces you to two techniques of generating web applications with Grails: static
+and dynamic scaffolding. The chapter then takes you through the code generated and explains
+step-by-step how the code works. Having presented the code generated, this chapter shows you
+how to develop the bookstore application with Grails 2. This chapter also covers unit testing, an
+oft-neglected task in application development. This chapter shows you how to build tests for your
+web applications using the JUnit testing framework. Then this chapter shows you how to use the
+in-memory database H2. In this chapter, you will also learn to use the latest version of the
+Groovy-Grails tool suite.
+Chapter 8: Play with Java and Scala
+Chapter 8 introduces the key web player of the Typesafe stack, the Play 2 framework, and explains how
+the Typesafe stack provides an alternative to Java EE to build Java- and Scala-based applications. First
+you will learn to develop a Java-based web application using Play 2. Then you will learn to develop a
+Scala-based web application using Play 2. Subsequently, this chapter shows how to use the model and
+access a database in Play 2.
+An intelligent machine is that which extends the very imagination with which it was built. An example
+of this is the instruction called invokeDynamic,1 which was introduced with Java 7 to optimize the
+performance of dynamically typed languages on the Java Virtual Machine (JVM). The JVM, originally
+intended for Java, can now host a myriad of programming languages, including Groovy2 and Scala.3
+This has led to a renaissance of Java web development. This new paradigm of cross-pollination and
+diverse, well-founded options carves out a number of niches in the Java ecosystem, resulting in a
+richer web landscape than ever before.
+The open source community has capitalized on the multiparadigm capabilities offered by the
+languages that run on the JVM, by means of web frameworks, to dramatically enhance the
+productivity in web development. Java EE4 advanced this momentum, pioneered by Java
+frameworks such as Spring,5 by standardizing and improving the API and runtime environment.
+Further, functional programming constructs, in the form of lambdas, have been added to Java 8. As
+a result, Java is on the rebound to become an übersolution.
+This chapter sets the stage for the book by introducing the three key players that join forces in
+building modern Java web applications: the JVM languages, Java EE, and the Java web frameworks.
+The chapter begins by introducing the JVM languages and then introduces Java EE. The Java
+EE platform is the set of API specifications that act as the building blocks for developing web
+applications. The chapter then highlights the Java web frameworks, which will be the subject of the
+book from Chapter 4 onward.
+JVM Languages
+The JVM is the runtime environment that provides you with the ability to use different programming
+languages for building web applications. The JVM languages can be largely classified into two types:
+languages that are designed for the JVM and existing languages that are ported to JVM.
+Languages Designed for the JVM
+Plenty of languages are specifically designed for the JVM; Table 1-1 describes a few of them. All but
+Clojure are discussed in this book.
+Java EE
+Java began life as a programming language designed for building stand-alone applications and grew
+rapidly into other spheres. A large part of Java’s popularity can be attributed to its usage in creating
+web applications. A web application consists of static and dynamic (interactive) web pages. Static
+web pages contain various types of markup languages (HTML, XHTML, and so on) and are used, in
+general, to provide information; dynamic web pages, on the other hand, are capable of generating
+content with the aid of additional web components (covered in Chapter 2). Thus, a web application
+is a collection of web pages and is capable of generating dynamic content in response to requests.
+Unlike a web page used merely to provide information, a web application lets you perform some
+activity and save the result. Developing a web application, however, is fundamentally different from
+building stand-alone applications and requires you to understand the following three key elements:
+The Java EE platform: This is the set of API specifications that are the building
+blocks of the web application.
+The web container: The web container implements the API specifications of
+the Java EE platform. Specifically, the web container provides the services
+for managing and executing web components such as servlets, JSPs, filters,
+listeners, and render responses to the client. The web containers are covered in
+Chapter 2.
+The Java EE platform is aimed at standardizing and reducing the complexity of enterprise application
+development by providing an application model that defines an architecture for implementing
+services as multitiered applications. In a multitiered application, the functionality of the application
+is separated into distinct functional areas, called tiers. Figure 1-3 illustrates the typical multitiered
+architecture in a Java EE application model.
+The Client Tier
+The client tier is the top tier in a multitiered Java EE architecture; it consists of application clients
+that make requests to the Java EE server, which is often located on a different machine. The server
+processes the requests and returns a response to the client. An example of a client is a web browser
+or a stand-alone application.
+The Web Tier
+The web tier consists of components that handle the interaction between clients and the business
+tier. After receiving a request from the client, the web tier does the following:
+1. Collects input from the client
+2. Controls the flow of screens or pages on the client
+3. Maintains the state of data for a user’s session
+4. Obtains results from the components in the business tier
+5. Generates dynamic content in various formats to the client
+As shown in Figure 1-2, a new Web Profile specification has been added in Java EE 7.10 Table 1-3
+lists technologies included in the Web Profile specification. As mentioned earlier, the goal of Web
+Profile is to allow developers to create web applications with the appropriate set of technologies.
+This book concentrates on the web tier of Java EE; we will dive deep into the web tier in Chapter 2.
+The multitier architecture of Java EE has a tremendous impact on the development of Java
+enterprise applications. A Java enterprise application can be defined as a Java application that
+utilizes the enterprise services offered by Java EE. In fact, a web application can be classified as
+an enterprise application if it utilizes Java EE services in the form of components packed in the
+web tier. Java EE isolates these services functionally into separate tiers, as illustrated in Figure 1-3,
+by providing an application model on which the Java enterprise applications should be built. As a
+consequence, the Java enterprise application mirrors the multitier architecture of Java EE. Figure 1-4
+illustrates a generalized view of the layers of a typical web application.
+Each layer in Figure 1-4 is an area of concern, for the application. For instance, the web layer deals
+only with employing the web tier components of Java EE. Having different layers in an application
+results in what is called a separation of concerns. In terms of implementation, this separation of
+concerns is achieved using coarse-grained interfaces.
+The concern is the feature, functionality or business functions with which the application’s
+developer needs to be concerned. Crosscutting such concerns is inherent in complex systems
+and leads to code scattering, which is when code for one concern spans many modules, and
+code tangling, which is when code in one module concentrates on addressing multiple concerns.
+Code scattering and code tangling lead to a lack of clarity, redundancy, rigidity, and continuous
+refactoring. Figure 1-5 illustrates how the system services of logging, transaction, and security
+crosscut the business functions of the application.
+BookService in Figure 1-5 is too involved with the system services. Each object knows and is
+responsible for logging, security, and transaction. A method, for example, to purchase a book in
+BookService should be concerned only with how to purchase the book and not with whether it is.
+secure or transactional. Separation of concerns, one of the main goals of software engineering, lets
+you handle each service on its own and thereby does the following:
+Promotes traceability within and across the artifacts in the system, throughout
+the life cycle of the system
+Controls the impact caused by the change, thereby providing scope for
+evolution and noninvasive adaptation
+Promotes development of cohesive units, thereby facilitating reuse.
+The term separation of concerns (SoC) was coined by Edsger W. Dijkstra in his paper “On the role of scientific thought.”11
+Dijkstra explains in in the following terms:
+Let me try to explain to you, what to my taste is characteristic for all intelligent thinking. It is, that
+one is willing to study in depth an aspect of one’s subject matter in isolation for the sake of its own
+consistency, all the time knowing that one is occupying oneself only with one of the aspects. We
+know that a program must be correct and we can study it from that viewpoint only; we also know
+that it should be efficient and we can study its efficiency on another day, so to speak. In another mood
+we may ask ourselves whether, and if so: why, the program is desirable. But nothing is gained—on
+the contrary!—by tackling these various aspects simultaneously. It is what I sometimes have called
+“the separation of concerns,” which, even if not perfectly possible, is yet the only available technique
+for effective ordering of one’s thoughts, that I know of. This is what I mean by “focusing one’s attention
+upon some aspect”: it does not mean ignoring the other aspects, it is just doing justice to the fact
+that from this aspect’s point of view, the other is irrelevant. It is being one- and multiple-track minded
+simultaneously.
+Web Layer
+The web layer of a web application consists of the web tier components of Java EE such as servlets
+and JSP. The web layer can access the service layer, but there should not be a tight coupling
+between the web layer and the service layer. That is, changing the service layer should not impact
+the web layer.
+Service Layer
+The service layer consists of the business tier components of Java EE such as Enterprise JavaBeans
+(EJBs). The service layer can access the data access layer, but there should be no tight coupling
+between the service layer and the data access layer. In fact, the service layer should not know
+anything about the web or data access layer. The service layer provides a coarse-grained interface
+for the web layer.
+Data Access Layer
+The data access layer consists of the data tier components of Java EE such as JDBC and JPA. This
+layer should not contain any business logic. This layer abstracts the actual persistence mechanism
+(in other words, JDBC or JPA) from the service layer by providing the coarse-grained interface to the
+service layer.
+In this chapter, you will build the data access layer of the bookstore application and query it via a
+stand-alone Java application. In Chapter 2, you will replace this stand-alone Java application with
+a web layer using the web tier components of Java EE (specifically, servlets and JSPs). You will
+use this data access layer throughout this book, and from Chapter 4 onward you will build a web
+application repeatedly by rebuilding the web layer using different web frameworks.
+Oracle and the Java Community Process (JCP) provide standardized enterprise components, and if
+successful enterprise applications can be built using these components, then why do we need web
+frameworks? What are web frameworks for? The next section answers these questions.
+Java Web Frameworks
+While Java EE does a great job of standardizing the enterprise infrastructure, providing an
+application model, and providing components adequate to develop web applications, two major
+problems are associated with it.
+Interacting directly with the Java EE components often results in massive
+boilerplate code and even code redundancy.
+Creating an enterprise application using the Java EE infrastructure is a nontrivial
+task that requires a great deal of expertise. The team members usually involved
+in creating an enterprise Java EE application act in varied roles, and all of them
+may not have the level of expertise that meets the Java EE criteria.
+Frameworks address these two major problems (and several other concerns discussed in detail in
+Chapter 3). Table 1-4 describes the web frameworks you will learn about in this book.

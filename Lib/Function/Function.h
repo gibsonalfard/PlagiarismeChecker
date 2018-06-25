@@ -3,6 +3,7 @@
 #include "../Statistik/Statistik.h"
 #include "../StemmingENG/stemming.h"
 #include "../Queue/Queue.h"
+#include <math.h>
 
 /* Memasukan teks ke dalam string dinamik dengan mengabaikan tanda baca dan angka */
 String caseFolding(String text, char *location);
@@ -14,7 +15,8 @@ bool isStopword(String word, addr stopword);
 bool isBasicWord(String word, addr basic);
 String StemString(String text);
 Queue getSimilarityList(addrStat statistik, int numOfDocs);
-void countSimilarity(addrStat root, records *info, int total[]);
+//void countSimilarity(addrStat root, records *info, int total[]);
+void countSimilarity(addrStat root, records *info, int rerata[]);
 void getIndex(char* teks, int index[]);
 void getTotal(addrStat root, int index[], int total[]);
 float absolute(float number);
