@@ -1,0 +1,172 @@
+Welcome to Beginning JSP, JSF, and Tomcat Web Development: From Novice to Professional.
+This book has the ambitious goal of teaching you how to develop dynamic web pages with
+JavaServer Pages (JSP) 2.1 and JavaServer Faces (JSF) 1.2.
+This is easier said than done, because to use JSP and JSF, you need to know at least some
+Java, HTML, XML, and SQL. Moreover, some knowledge of JavaScript and Cascading Style
+Sheets (CSS) would also be useful, and you couldn’t fully exploit the power of JSP/JSF without
+knowing the JSP Expression Language (EL) and the XPath language.
+To cover all this ground, we’ve decided to relegate most of the details to appendixes and
+use the main body of the book to teach you key concepts and components with as little clutter
+as possible.
+Chapter 1 introduces you to JSP, describes the general structure of JSP applications, and
+explains the full code of your first JSP application. At the end of the chapter, we also tell you
+how to install the application in Tomcat. We knew that you would be eager to see something
+working, and we didn’t want to make you wait for it!
+Chapter 2 is where we cover all aspects and components of JSP. After giving you a brief
+summary of the Java syntax, we introduce the online bookshop application that we’ll use as
+an example in several chapters. We then explain how to use JSP variables, directives, and
+standard actions, how to create your own custom actions, and how to use JSTL and EL.
+Finally, we briefly describe how to write JSP documents in XML syntax.
+Having quenched your thirst for getting into JSP as quickly as possible, we take a step
+back in Chapter 3 and tell you about HTML. This is important, because HTML is the result
+of executing JSP pages, and you must be familiar with it. After describing the HTTP requestresponse mechanism, we explain the HTML components (text, objects, links, tables, and
+forms), introduce CSS, and give you some examples of JavaScript.
+In Chapter 4, we tell you how to access databases from JSP. It would make little sense to
+talk about dynamic web pages without permanent data storage.
+In Chapter 5, we introduce you to JSF and show you how it fits together with JSP.
+Chapter 6 is dedicated to XML. After reading this chapter, you’ll understand why developing a web application without XML is unthinkable!
+In Chapter 7, we describe Tomcat.
+Chapter 8, the last chapter of the book, is dedicated to the online bookshop application.
+We bring together the pieces we’ve shown in the preceding chapters and give you the last
+missing bits.
+In Appendix A, we explain how to download and install all the packages you need: Java,
+JSP, Tomcat, SQL, and so on.
+xxiAppendixes B, C, D, and E describe HTML character sets, HTML, JSP, and SQL, respectively. This is where you’ll find the details we left out in the preceding chapters.
+Appendix F provides a quick reference to JSF, Appendix G introduces you to the Eclipse
+integrated development environment (IDE), and Appendix H lists abbreviations and
+acronyms.
+After reading this book, you’ll have acquired a toolbox to develop good-quality web applications. Having the right idea and implementing the next killer application that will make you
+a millionaire/billionaire is entirely up to you!
+What makes the Web really useful is its interactivity. By interacting with some remote server,
+you can find the information you need, do your banking, or buy online. And every time you
+type something into a web form, an application “out there” interprets your request and prepares a web page to respond. JavaServer Pages (JSP) is a technology that helps you create such
+dynamically generated pages.
+Sun Microsystems introduced the Java servlet application programming interface (API)
+in June 1997 with the purpose of providing an efficient and easily portable mechanism to
+develop web pages with dynamic content. In a nutshell, the servlet package defines Java
+classes to represent requests sent to the server by the remote web browsers and responses
+traveling in the opposite direction. A servlet is nothing other than a Java object residing on a
+server that receives requests via the Internet, accesses resources (such as databases), implements the logic to prepare the responses, and sends the responses back to the network.
+The Apache Software Foundation (ASF) developed the Apache Tomcat application server
+to provide an environment in which servlets can execute. Tomcat is also capable of converting
+JSP documents into servlets.
+In this chapter, we’ll introduce you to Java servlets and JSP, and we’ll show you how they
+execute together within Tomcat to generate dynamic web pages. We’ll barely scratch the surface of both JSP and Tomcat, and we won’t even mention JSF. We’ll show you how to develop
+applications with basic tools, rather than in an environment that takes care of most menial
+tasks and provides sophisticated checking and debugging capabilities. This will give you a
+better understanding of what modern tools can do for you.
+We know that you’re eager to jump into the thick of things. Therefore, after briefly describing how JSP-based web applications are structured, we’ll show you at once a nontrivial
+example, without explaining everything beforehand.
+We recommend that you first install the software packages as described in Appendix A.
+You’ll then be able to execute the examples and get a feel for them, rather than just go through
+the code in print.
+What Is JSP?
+As we said, JSP is a technology that lets you add dynamic content to web pages. Without JSP,
+you always have to update the appearance or the content of plain static HTML pages by
+hand. Even if all you want to do is change a date or a picture, you must edit the HTML file
+and type in your modifications. Nobody is going to do it for you, whereas with JSP, you can
+make the content depend on many factors, including the time of the day, the information
+provided by the user, her history of interaction with your web site, and even her browser type.
+This capability is essential to provide online services in which each customer is treated differently depending on her preferences and requirements. A crucial aspect of providing
+meaningful online services is for the system to be able to remember data associated with the
+service and its users. That’s why databases play an essential role in dynamic web pages. But
+let’s take it one step at a time.
+Sun Microsystems introduced JSP in 1999. Developers quickly realized that additional tags would be useful,
+and the JSP Standard Tag Library (JSTL) was born. JSTL is a collection of custom tag libraries that encapsulate the functionality of many JSP standard applications, thereby eliminating repetitions and making the
+applications more compact. Together with JSTL also came the JSP Expression Language (EL).
+In 2003, with the introduction of JSP 2.0, EL was incorporated into the JSP specification, making it
+available for custom components and template text, not just for JSTL, as was the case in the previous versions. Additionally, JSP 2.0 made it possible to create custom tag files, thereby perfecting the extensibility of
+the language.
+In parallel to the evolution of JSP, several frameworks to develop web applications became available.
+In 2004, one of them, JavaServer Faces (JSF), focused on building user interfaces (UIs) and used JSP by
+default as the underlying scripting language. It provided an API, JSP custom tag libraries, and an expression
+language.
+The Java Community Process (JCP), formed in 1998, released in May 2006 the Java Specification
+Request (JSR) 245 titled JavaServer Pages 2.1, which effectively aligns JSP and JSF technologies. In particular, JSP 2.1 includes a Unified EL (UEL) that merges together the two versions of EL defined in JSP 2.0 and
+JSF 1.2 (itself specified as JSR 252). Sun Microsystems includes JSP 2.1 in its Java Platform, Enterprise Edition 5 (Java EE 5), finalized in May 2006 as JSR 244. The classes included in EE 5 rely on the general classes
+that form the Java Platform, Standard Edition 5 (Java SE 5), which is available as Java Runtime Environment
+(JRE) and Java Development Kit (JDK).
+Meanwhile, the servlet technology has evolved, and Sun Microsystems released Servlet 2.5 in September 2005. The JCP formally specified Servlet 2.5 as an updated version of JSR 152 in May 2006.
+In summary, Java EE 5 includes JSP 2.1, which in turn specifies a UEL consistent with JSF 1.2, while
+Java SE 5 provides the foundation classes, and Servlet 2.5 includes a library to handle HTTP requests.
+Viewing a Web Page
+To understand JSP, you first need to have a clear idea of what happens when you ask your
+browser to view a web page, either by typing a URL in the address field of your browser or by
+clicking on a hyperlink. Figure 1-1 shows you how it works.
+Viewing a JSP Page
+With JSP, the web page doesn’t actually exist on the server. As you can see in Figure 1-2, the
+server creates it fresh when responding to each request.
+What reaches your browser is the output generated by the servlet (by the converted
+and compiled JSP page), not the JSP page itself. The same servlet produces different outputs
+depending on the parameters of the HTTP request and other factors. For example, suppose
+you’re browsing the products offered by an online shop. When you click on the image of a
+product, your browser generates an HTTP request with the product code as a parameter.
+As a result, the servlet generates an HTML page with the description of that product. The
+server doesn’t need to recompile the servlet for each product code.
+The servlet queries a database containing the details of all the products, obtains the
+description of the product you’re interested in, and formats an HTML page with that data.
+This is what dynamic HTML is all about!
+Plain HTML is not capable of interrogating a database, but Java is, and JSP gives you the
+means of including snippets of Java inside an HTML page.
+Hello World!
+A small example of JSP will give you a more practical idea of how JSP works. Let’s start once
+more from HTML. Listing 1-1 shows you a plain HTML page to display “Hello World!” in your
+browser’s window.
+If you view the page source through your browser, not surprisingly you’ll see exactly
+what’s shown in Listing 1-1. To obtain exactly the same result with a JSP page, you only need
+to insert a JSP directive before the first line, as shown in Listing 1-2, and change the file
+extension from html to jsp.
+Obviously, there isn’t much point in using JSP for such a simple page. It only pays to use
+JSP if you use it to include dynamic content. Check out Listing 1-3 for something more juicy
+As with hello.html, you can view hello.jsp by placing it in the webapps\hello\ folder.
+The code within the <% ... %> pair is a scriptlet written in Java. When Tomcat’s JSP engine
+interprets this module, it creates a Java servlet containing 92 lines of code, among which you
+can find those shown in Listing 1-4 (with some indentation and empty lines removed).
+As we said before, this servlet executes every time a browser sends a request to the
+server. However, before the code shown in Listing 1-4 executes, the variable out is bound to
+the content of the response. As a result, everything written to out ends up in the HTML page
+that you’ll see in your browser. The scriptlet, shown in bold, is copied to the servlet. Everything else is written to the output. This should clarify how the mix of HTML and Java is
+achieved in a JSP page.
+As the variable out is defined in each servlet, you can use it within any JSP module to
+insert something into the response. Another such “global” JSP variable is request (of type
+HttpServletRequest). The request contains the IP address from which the request was originated—that is, of the remote computer with the browser (remember that this code runs on
+the server). To extract the address from the request, you only need to execute its method
+getRemoteAddr(). The request also contains information about the browser. When some
+browsers send a request, they provide somewhat misleading information, and the format is
+complex. However, the code in Listing 1-4 shows you how to determine whether you’re
+using Microsoft Internet Explorer or Mozilla Firefox. Figure 1-4 shows the generated page
+as it appears in a browser.
+Notice that IP address 127.0.0.1 is consistent with the host localhost. And just in case
+you want to see that the HTML is indeed dynamic, check out Figure 1-5. Incidentally, the
+method you used in hello.jsp to identify the Internet Explorer from the user agent is the
+official one provided by Microsoft.
+JSP Application Architectures
+The insertion of Java code into HTML modules opens up the possibility of building dynamic
+web pages, but to say that it is possible doesn’t mean that you can do it efficiently and effectively. If you start developing complex applications by means of scriptlets enclosed in <% ... %>
+pairs, you’ll rapidly reach the point where the code will become difficult to maintain. The key
+problem with mixing Java and HTML, as in “Hello World!,” is that the application logic and the
+way the information is presented in the browser are mixed. In general, the business application designers and the web page designers are different people with complementary and only
+partly overlapping skills. While application designers are experts in complex algorithms and
+databases, web designers focus on page composition and graphics. The architecture of your
+JSP-based applications should reflect this distinction. The last thing you want to do is blur the
+roles within the development team and end up with everybody doing what somebody else is
+better qualified to do.
+The Model 1 Architecture
+The first solution to this problem that developers found was to define the JSP Model 1 architecture, in which the application logic is implemented in Java classes (i.e., Java beans), which
+you can then use within JSP (see Figure 1-6).
+Model 1 is acceptable for applications containing up to a few thousand lines of code, and
+especially for programmers, but the JSP pages still have to handle the HTTP requests, and this
+can cause headaches for the page designers.
+The Model 2 Architecture
+A better solution, also suitable for larger applications, is to separate application logic and page
+presentation. This solution comes in the form of the JSP Model 2 architecture, also known as
+the model-view-controller (MVC) design pattern (see Figure 1-7).
+With this model, a servlet processes the request, handles the application logic, and
+instantiates the Java beans. JSP obtains data from the beans and can format the response
+without having to know anything about what’s going on behind the scenes. To illustrate this
+model, we will describe a sample application called Ebookshop, a small application to sell
+books online. Ebookshop is not really functional, because the list of books is hard-coded in
+the application rather than stored in a database. Also, nothing happens once you confirm the
+order. However, this example serves the purpose of showing you how Model 2 lets you separate business logic and presentation.
+Figure 1-8 shows the Ebookshop’s home page, which you see when you type http://
+localhost:8080/ebookshop in your browser’s address field.

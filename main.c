@@ -13,19 +13,19 @@ int main(int argc, char *argv[])
 {	
 	/*Deklarasi Variable*/
 	String text = "";
-	char word[40];
+	char word[40]; 
 	addrStat treeOfWord = NULL;
-	int i, choice, n; 
+	int i, choice, n;
 	addr stopword = NULL;
 	addr kataDasar = NULL;
 	Queue similar;
-	char arr[n][40];
+	char* teks = "";
 	char ENG[] = "File/stopwordEN.txt";
 	char IND[] = "File/stopwordID.txt";
 	char ENGWords[] = "File/KataDasarEN.txt";
 //	char INDWords[] = "File/KataDasarID.txt";
 	
-	CreateQueue(&similar);
+	//CreateQueue(&similar);
 	
 	/* Start Program*/
 	banner();
@@ -40,9 +40,7 @@ int main(int argc, char *argv[])
 				getStopwords(&stopword, IND);
 //				getBasicWords(&kataDasar, INDWords);
 				printf("\n         Masukan jumlah file yang akan dibandingkan: "); scanf("%d", &n);
-				for(i = 0; i < n; i++){
-					printf("Nama File %d : ", i+1);	scanf("%s", arr[i]);
-				}
+				teks = "Nama File";
 		break;
 		case 2:
 				system("cls");
@@ -52,10 +50,12 @@ int main(int argc, char *argv[])
 				printf("\n         Enter amount of file that will be compared: "); scanf("%d", &n);
 				system("cls");
 				banner();
-				for(i = 0; i < n; i++){
-					printf("\n         File Name %d : ", i+1);	scanf("%s", arr[i]);
-				}
+				teks = "\tFile Name";
 		break;
+	}
+	char arr[n][40];
+	for(i = 0; i < n; i++){
+		printf("%s %d : ", teks,i+1);	scanf("%s", arr[i]);
 	}
 	
 	for(i = 0; i < n; i++){
@@ -67,12 +67,13 @@ int main(int argc, char *argv[])
 	
 	//printf("Akhir : \n");
 	//InorderStat(treeOfWord, n); printf("\n");
+	//system("pause");
 	system("cls");
 	banner();
 	similar = getSimilarityList(treeOfWord, n);
 	printf("\n         Akhir : \n");
 	printResult(similar, arr);
-	
+		
 	system("pause");	
 	return 0;
 }

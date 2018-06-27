@@ -71,7 +71,7 @@ void Tokenizing(String text, int doc, addr stop, addr dasar, addrStat *root){
 	for(i = 0; i < n; i++){
 		if(text[i] == 32 || text[i] == 10 && strlen(word) != 0){
 			if(!isStopword(word, stop)){
-				if(!isBasicWord(word, dasar)){
+				if(!isBasicWord(word, dasar) && strlen(word) > 1){
 					word[stem(word, 0, strlen(word)-1) + 1] = 0;	
 				}
 				AddStat(&(*root), word, doc);
@@ -126,7 +126,7 @@ Queue getSimilarityList(addrStat statistik, int numOfDocs){
 			int index[2] = {rows, cols};
 			int total[2] = {0,0};
 
-			getTotal(statistik, index, total);
+			//getTotal(statistik, index, total);
 			
 			label = concatLetter(label, (char)(rows+48));
 			label = concatLetter(label, '-');
@@ -137,6 +137,7 @@ Queue getSimilarityList(addrStat statistik, int numOfDocs){
 			info.total = 0;
 			
 			countSimilarity(statistik, &info, total);
+			info.total = sqrt((float)total[0]) * sqrt((float)total[1]);
 			
 			EnQueue(&Q, info);
 			label = "";
@@ -160,7 +161,7 @@ void getTotal(addrStat root, int index[], int total[]){
 		}
 	}
 }
-
+/*
 void countSimilarity(addrStat root, records *info, int total[]){
 	float stat1, stat2;
 	int index[2] = {0,0};
@@ -181,6 +182,24 @@ void countSimilarity(addrStat root, records *info, int total[]){
 		}
 		if(root->right != NULL){
 			countSimilarity(root->right, &(*info), total);	
+		}
+	}
+}*/
+
+void countSimilarity(addrStat root, records *info, int rerata[]){
+	int index[2] = {0,0};
+	if (root) {
+		getIndex((*info).label, index);
+		
+		(*info).same += (root->info).amount[index[0]] * (root->info).amount[index[1]];
+		rerata[0] += (root->info).amount[index[0]] * (root->info).amount[index[0]];
+		rerata[1] +=  (root->info).amount[index[1]] * (root->info).amount[index[1]];
+		
+		if(root->left != NULL){
+			countSimilarity(root->left, &(*info), rerata);
+		}
+		if(root->right != NULL){
+			countSimilarity(root->right, &(*info), rerata);	
 		}
 	}
 }
