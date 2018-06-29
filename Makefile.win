@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o Lib/String/String.o Lib/Function/Function.o Lib/Statistik/Statistik.o Lib/AVL/Tree.o Lib/StemmingENG/stemming.o Lib/Queue/LIST1.o Lib/Queue/Queue.o $(RES)
-LINKOBJ  = main.o Lib/String/String.o Lib/Function/Function.o Lib/Statistik/Statistik.o Lib/AVL/Tree.o Lib/StemmingENG/stemming.o Lib/Queue/LIST1.o Lib/Queue/Queue.o $(RES)
+OBJ      = main.o Lib/String/String.o Lib/Function/Function.o Lib/Statistik/Statistik.o Lib/AVL/Tree.o Lib/StemmingENG/stemming.o Lib/Queue/LIST1.o Lib/Queue/Queue.o Lib/StemmingID/stemming.o $(RES)
+LINKOBJ  = main.o Lib/String/String.o Lib/Function/Function.o Lib/Statistik/Statistik.o Lib/AVL/Tree.o Lib/StemmingENG/stemming.o Lib/Queue/LIST1.o Lib/Queue/Queue.o Lib/StemmingID/stemming.o $(RES)
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -static-libstdc++ -static-libgcc  
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" 
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" 
@@ -48,3 +48,6 @@ Lib/Queue/LIST1.o: Lib/Queue/LIST1.c
 
 Lib/Queue/Queue.o: Lib/Queue/Queue.c
 	$(CC) -c Lib/Queue/Queue.c -o Lib/Queue/Queue.o $(CFLAGS)
+
+Lib/StemmingID/stemming.o: Lib/StemmingID/stemming.c
+	$(CC) -c Lib/StemmingID/stemming.c -o Lib/StemmingID/stemming.o $(CFLAGS)

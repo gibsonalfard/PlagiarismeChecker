@@ -21,7 +21,7 @@ LogOutputEnabled=0
 OverrideOutput=0
 OverrideOutputName=
 HostApplication=
-Folders=Lib,Lib/AVL,Lib/Function,Lib/Queue,Lib/Statistik,Lib/StemmingENG,Lib/String
+Folders=Lib,Lib/AVL,Lib/Function,Lib/Queue,Lib/Statistik,Lib/StemmingENG,Lib/StemmingID,Lib/String
 CommandLine=
 UseCustomMakefile=0
 CustomMakefile=
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=000000000000000000000000000
-UnitCount=16
+UnitCount=18
 
 [VersionInfo]
 Major=1
@@ -204,6 +204,26 @@ BuildCmd=
 FileName=Lib\Queue\Queue.h
 CompileCpp=0
 Folder=Lib/Queue
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit17]
+FileName=Lib\StemmingID\stemming.c
+CompileCpp=0
+Folder=Lib/StemmingID
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit18]
+FileName=Lib\StemmingID\stemming.h
+CompileCpp=0
+Folder=Lib/StemmingID
 Compile=1
 Link=1
 Priority=1000
