@@ -27,3 +27,4 @@ String getPlagiarismLevel(float number);
 void printResult(Queue Q, char docs[][40]);
 String StemmingWord(String word);
 bool isDocumentExist(String location);
+void CreateStemDictionary();

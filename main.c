@@ -2,6 +2,28 @@
 #include <stdlib.h>
 
 #include "lib/Function/Function.h"
+/*
+void goAnotherFile(){
+	FILE *F;
+	FILE *T;
+	F = fopen("File/daftarKataDasar.txt", "r");
+	T = fopen("File/KataDasarID.txt", "a");
+	
+	int c;
+	String word = "";
+	
+	while((c = fgetc(F)) != EOF){
+		if(c == 32){
+			word = concatLetter(word,(char)10);
+			fprintf(T,word);
+			word="";
+		}else{
+			word = concatLetter(word,(char)c);
+		}
+	}
+	fclose(F);
+	fclose(T);
+}*/
 
 void banner(){
 	printf("         ================================================================\n");
@@ -13,7 +35,7 @@ int main(int argc, char *argv[])
 {	
 	/*Deklarasi Variable*/
 	String text = "";
-	char word[40]; 
+	char word[40];
 	addrStat treeOfWord = NULL;
 	int i, n;
 	addr stopword = NULL;
@@ -27,6 +49,7 @@ int main(int argc, char *argv[])
 	char INDWords[] = "File/KataDasarID.txt";
 	
 	CreateQueue(&similar);
+	CreateStemDictionary();
 	
 	/* Start Program*/
 	banner();

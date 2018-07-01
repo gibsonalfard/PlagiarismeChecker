@@ -85,7 +85,7 @@ void Tokenizing(String text, int doc, addr stop, addr dasar, addrStat *root){
 		if((text[i] == 32 || text[i] == 10) && strlen(word) != 0){
 			if(!isStopword(word, stop)){
 				if(!isBasicWord(word, dasar) && strlen(word) > 1){
-					word = StemmingWord(word);	
+					word = StemmingWord(word);
 				}
 				
 				AddStat(&(*root), word, doc);
@@ -273,4 +273,27 @@ void printResult(Queue Q, char docs[][40]){
 		
 		printf("\n");
 	}
+}
+
+void CreateStemDictionary() {
+	String word = "";
+	String token;
+	int indeks = 0;
+	int c;
+	FILE *fd = fopen("File/KataDasarID.txt", "r");
+	if (fd == NULL) {
+		printf(">> Failed Load File");
+	} else {
+		while((c = fgetc(fd)) != EOF){
+			if(c == 10){
+				strcpy(listRootWord[indeks].kata, word);
+				indeks++;
+				word="";
+			}else{
+				word = concatLetter(word,(char)c);
+			}
+		}
+	}
+	
+	fclose(fd);
 }
