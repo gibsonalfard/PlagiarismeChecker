@@ -40,7 +40,9 @@ int main(int argc, char *argv[])
 				getStopwords(&stopword, IND);
 //				getBasicWords(&kataDasar, INDWords);
 				printf("\n         Masukan jumlah file yang akan dibandingkan: "); scanf("%d", &n);
-				teks = "Nama File";
+				system("cls");
+				banner();
+				teks = "\n         Nama File";
 		break;
 		case 2:
 				system("cls");
@@ -50,7 +52,7 @@ int main(int argc, char *argv[])
 				printf("\n         Enter amount of file that will be compared: "); scanf("%d", &n);
 				system("cls");
 				banner();
-				teks = "\tFile Name";
+				teks = "\n         File Name";
 		break;
 	}
 	char arr[n][40];
@@ -71,7 +73,6 @@ int main(int argc, char *argv[])
 	system("cls");
 	banner();
 	similar = getSimilarityList(treeOfWord, n);
-	printf("\n         Akhir : \n");
 	printResult(similar, arr);
 		
 	system("pause");	
