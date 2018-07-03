@@ -1,9 +1,21 @@
 #include "Function.h"
 
+bool isDocumentExist(String location){
+	FILE *F;
+	bool condition;
+	location = concatWord("Storage/",location);
+	F = fopen(location, "r");
+	condition = F;
+	fclose(F);
+	
+	return condition;
+}
+
 String caseFolding(String text, char *location){	
 	FILE *F;
 	location = concatWord("Storage/",location);
 	F = fopen(location, "r");
+	
 	int c, i;
 	char letter;
 	String word = "";
@@ -52,6 +64,7 @@ void getBasicWords(addr *T, char *namaFile){
 	String word = "";
 	
 	while((c = fgetc(F)) != EOF){
+		
 		if(c == 10){
 			AVLTree(&(*T), word);
 			word="";
@@ -67,22 +80,37 @@ void Tokenizing(String text, int doc, addr stop, addr dasar, addrStat *root){
 	int n = strlen(text), i;
 	String word = "";
 	StatData info;
-	
+	//printf("String : %s\n", text);
 	for(i = 0; i < n; i++){
-		if(text[i] == 32 || text[i] == 10 && strlen(word) != 0){
+		if((text[i] == 32 || text[i] == 10) && strlen(word) != 0){
 			if(!isStopword(word, stop)){
 				if(!isBasicWord(word, dasar) && strlen(word) > 1){
-					word[stem(word, 0, strlen(word)-1) + 1] = 0;	
+					word = StemmingWord(word);
 				}
+				
 				AddStat(&(*root), word, doc);
 			}
 			word = "";
-		}else {
+		}else if(strlen(word) >= 0 && text[i] != 32){
 			word = concatLetter(word, text[i]);
 		}
 	}
 }
 
+String StemmingWord(String word){
+	String kata = word;
+	
+	switch(choice){
+		case 1:
+			strcpy(kata, stemming(kata));
+		break;
+		case 2:
+			kata[stem(kata, 0, strlen(word)-1) + 1] = 0;
+		break;
+	}
+	
+	return kata;
+}
 
 bool isStopword(String word, addr stopword){
 	return searchNode(stopword, word) != NULL;
@@ -213,6 +241,18 @@ float absolute(float number){
 	return number > 0 ? number : (number*-1);
 }
 
+String getPlagiarismLevel(float number){
+	if(number == 0){
+		return "Tidak Plagiat";
+	}else if(number < 30){
+		return "Plagiat Ringan";
+	}else if(number > 70){
+		return "Plagiat Berat";
+	}else{
+		return "Plagiat Sedang";
+	}
+}
+
 void printResult(Queue Q, char docs[][40]){
 	/*Melakukan Print terhadap Queue*/
 	int index[2] = {0,0};
@@ -225,11 +265,35 @@ void printResult(Queue Q, char docs[][40]){
 			getIndex(Info(P).label, index);
 			similarity = ((float)(Info(P).same)/(float)(Info(P).total))*100;
 			printf("\n         Perbandingan Kemiripan \n\n         Dokumen %s \n\n         Dokumen %s \n", docs[index[0]], docs[index[1]]);
-			printf("\n         Kemiripan Dokumen %.2f%c \n\n", similarity, '%');
+			printf("\n         Kemiripan Dokumen %.2f%c \n", similarity, '%');
+			printf("\n         Tingkat Plagiat : %s\n\n", getPlagiarismLevel(similarity));
 			//printf("%s / %d / %d\n",Info(P).label, Info(P).same, Info(P).total);
 			P = Next(P);
 		}
 		
 		printf("\n");
 	}
+}
+
+void CreateStemDictionary() {
+	String word = "";
+	String token;
+	int indeks = 0;
+	int c;
+	FILE *fd = fopen("File/KataDasarID.txt", "r");
+	if (fd == NULL) {
+		printf(">> Failed Load File");
+	} else {
+		while((c = fgetc(fd)) != EOF){
+			if(c == 10){
+				strcpy(listRootWord[indeks].kata, word);
+				indeks++;
+				word="";
+			}else{
+				word = concatLetter(word,(char)c);
+			}
+		}
+	}
+	
+	fclose(fd);
 }
